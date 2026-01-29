@@ -1,0 +1,40 @@
+
+h1{
+                color: red;
+                text-align: center;
+                margin: auto;
+    font-family: "Jolly Lodger", Arial;
+            }
+h2{
+      color: red;
+                text-align: center;
+                margin: auto;
+    font-family: "Jolly Lodger", Arial;
+}
+@font-face {
+    font-family: "Jolly Lodger";
+    src: url(./JollyLodger-Regular.ttf) format("truetype");
+}
+body {
+    background-color: black;
+}
+img {
+    margin: auto;
+    display: block;
+}
+nav{
+  text-align: center; 
+    margin: 12px;
+}
+p{
+    text-align: center;
+    color:aliceblue;
+        margin: 12px;
+     
+}
+footer{
+    text-align: center;
+    color: red;
+        font-family: "Jolly Lodger", Arial;
+    font-size: xx-large
+}
