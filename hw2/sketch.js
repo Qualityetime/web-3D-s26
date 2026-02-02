@@ -5,20 +5,35 @@ function setup() {
 }
 
 function draw(){
-    background('tan');
+    background('#C8EFEE');
     orbitControl();
-    fill('blue');
-    box(100);
-    translate(0,0,100);
-    fill('green');
-    box(50);
-    translate(0,0,50);
-    rotateY(45);
-    rotateX(45);
-    fill('red');
-    box(25);
-    translate(100,0,0);
+    //Bottom Circle
+    fill('white');
+    noStroke();
+    sphere(70);
+    translate(0,-70,0);
+    //Middle Circle
+    fill('white');
+    sphere(50);
+    //Top Circle
+    fill('white');
+     translate(0,-60,0);
+    //Left Eye
+    sphere(35);
+     translate(0,-10,0);
     scale(0.5);
     fill('black');
-    box(25);
+     translate(-20,-5,60);
+    sphere(10);
+    //Right Eye
+    translate(0,-10,0);
+    fill('black');
+     translate(40,10,-1);
+    sphere(10);
+    //Nose
+    translate(0,-60,0);
+    fill('orange');
+    translate(-20,75,20);
+    rotateX(90);
+    cone(15, 65); 
 }
