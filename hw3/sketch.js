@@ -17,6 +17,8 @@ background(0);
 function turkeyBaster(){
     beginGeometry();
     for (let i = 0; i < 2; i++) {
+        specularMaterial(random(255), random(255), random(255));
+        shininess(80);
         let r = random(255);
         let g = random(255);
         let b = random(255);
