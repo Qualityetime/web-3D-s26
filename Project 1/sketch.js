@@ -1,6 +1,9 @@
 function setup(){
     let canvas = createCanvas(400, 400, WEBGL);
     angleMode(DEGREES);
+    //let button = createButton("Customize Color");
+    //button.parent("button-holder");
+    //button.mousePressed();
 }
 
 function draw(){
@@ -63,6 +66,9 @@ function wristPic() {
     translate(0,-260.1, -15);
       box(70, 10, 120);
     pop();
-    
+    push();
+    translate(0,-260, 100);
+    sphere(20);
+    pop();
     
 }
