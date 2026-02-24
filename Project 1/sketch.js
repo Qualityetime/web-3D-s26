@@ -1,9 +1,9 @@
 function setup(){
     let canvas = createCanvas(400, 400, WEBGL);
     angleMode(DEGREES);
-    //let button = createButton("Customize Color");
-    //button.parent("button-holder");
-    //button.mousePressed();
+    let button = createButton("Customize Color");
+    button.parent("button-holder");
+    button.mousePressed(customizeColor);
 }
 
 function draw(){
@@ -67,8 +67,27 @@ function wristPic() {
       box(70, 10, 120);
     pop();
     push();
-    translate(0,-260, 100);
-    sphere(20);
+    fill(100, 100, 100, 100);
+    translate(0,-260, 95);
+    sphere(15);
     pop();
-    
+    push();
+    translate(0,-260, 99);
+    fill('black');
+    sphere(13);
+    pop();
+     push();
+    translate(0,-260, 100.5);
+    fill(100, 100, 100, 100);
+    sphere(12);
+    pop();
+     push();
+    translate(0,-260, 105);
+    fill('gray');
+    sphere(8);
+    pop();
+}
+
+function customizeColor() {
+fill(color(random(40, 255), random(40, 255), random(40, 255)));   
 }
