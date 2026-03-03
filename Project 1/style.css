@@ -34,8 +34,6 @@ h1 {
     align-items: center;
     min-height: 520px;
 }
-
-/* makes the default p5 button look cleaner */
 #button-holder button {
     padding: 10px 14px;
     border-radius: 10px;
