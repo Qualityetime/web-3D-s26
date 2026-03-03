@@ -1,6 +1,7 @@
 let bandColor;
 function setup() {
-    let canvas = createCanvas(400, 400, WEBGL);
+    let canvas = createCanvas(866, 834, WEBGL);
+    canvas.parent("canvas-holder");
     angleMode(DEGREES);
     bandColor = color(170, 170, 185);
     let button = createButton("Customize Color");
@@ -14,7 +15,7 @@ function draw() {
     noStroke();
     ambientLight(50);
     directionalLight(255, 255, 255, -0.5, -0.7, -1);
-    pointLight(255, 255, 255, 200, -200, 300);
+    pointLight(220, 220, 220, 200, -200, 300);
     wristPic();
 }
 

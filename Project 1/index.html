@@ -2,15 +2,38 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/addons/p5.sound.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./style.css" />
         <script src="./sketch.js"></script>
-        <title>Project 1 </title>
+        <title>Omniflicks</title>
     </head>
+
     <body>
-        <h1>Project 1</h1>
-        <div id="button-holder"></div>
-        <div id="canvas-holder"></div>
+        <div class="wrap">
+            <h1>Buy Omniflicks</h1>
+            <p class="sub">Pick a color, then spin the model.</p>
+
+            <div class="card">
+                <div id="canvas-holder"></div>
+            </div>
+
+            <div class="row">
+                <div id="button-holder"></div>
+
+                <div class="options">
+                    <h2>Finish</h2>
+                    <p class="small">Color options</p>
+                    <div class="dots">
+                        <span class="dot lilac"></span>
+                        <span class="dot green"></span>
+                        <span class="dot blue"></span>
+                        <span class="dot white"></span>
+                        <span class="dot black"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
