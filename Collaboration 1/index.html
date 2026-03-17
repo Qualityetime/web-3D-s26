@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Web 3D - Spring 2026 - Three.js Base</title>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap"
+            rel="stylesheet" />
+       
+        <!-- Needed for Three.js resources to connect to script. -->
+        <script type="importmap">
+			{
+				"imports": {
+					"three": "./src/three.module.js",
+					"three/addons/": "./src/"
+				}
+			}
+		</script>
+        <!-- Three.js scene script, must contain module type. -->
+        <script type= "module" src="./script.js"></script>
+    </head>
+    <body>
+        <main>
+            <div id="blocker">
+			<div id="instructions">
+                <p style="font-size:36px">
+					Web 3D Demo - March 17
+				</p>
+				<p style="font-size:36px">
+					Click to play
+				</p>
+				<p>
+					Move: WASD<br/>
+					Jump: SPACE<br/>
+					Look: MOUSE
+				</p>
+			</div>
+		</div>
+            <!--
+            <h1>Three.js Base</h1>
+            <h2 class="subtitle">
+                A basic Three.js scene.
+            </h2>
+            -->
+            <!-- Div for Three.js scene. -->
+            <div id="3-holder"></div>
+            <!--
+            <p class="caption">
+                The above 3D scene was created using <a href="https://threejs.org/">Three.js</a> and WEBGL.
+            </p>
+            <br />
+            <p>
+                To download the source code of this website as an example, head to:
+            </p>
+            <p><a href="https://github.com/cthompto/basic-threejs">https://github.com/cthompto/basic-threejs</a></p>
+            -->
+        </main>
+    </body>
+</html>
