@@ -1,0 +1,73 @@
+@font-face {
+ font-family: 'Butcherman Regular';
+ src: url("./Butcherman-Regular.ttf") format('truetype');
+}
+
+body {
+    background: black;
+    color: white;
+}
+
+main {
+  padding-left: 10%;
+  padding-right: 10%;
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Butcherman Regular", Georgia;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 50px;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 30px;
+  color: magenta
+}
+
+h2 {
+  font-family: "Cascadia Code", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 0;
+  font-style: normal;
+}
+
+.subtitle {
+  color: lightgray;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.caption {
+  text-align: right;
+  color: lightgray;
+}
+
+p, ul {
+  font-family: "Cascadia Code", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  color: magenta;
+}
+
+a:visited {
+  color: deeppink
+}
+
+canvas {
+  display: block;
+  margin: auto;
+  padding-bottom: 20px;
+}
