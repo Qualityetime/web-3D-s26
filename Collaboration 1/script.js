@@ -260,8 +260,8 @@ function makeTree1() {
     const trunk = makeBranch(70, 3.5, 0, 35, 0, 0, 0);
     group.add(trunk);
 
-    group.add(makeBranch(30, 2, -12, 60, 0, 0.8, 0));
-    group.add(makeBranch(30, 2, 12, 60, 0, -0.8, 0));
+    group.add(makeBranch(30, 1.5, -12, 60, 0, 0.8, 0));
+    group.add(makeBranch(30, 1.5, 12, 60, 0, -0.8, 0));
     group.add(makeBranch(22, 1.5, -18, 78, 0, 1.1, 0));
     group.add(makeBranch(22, 1.5, 18, 78, 0, -1.1, 0));
 
