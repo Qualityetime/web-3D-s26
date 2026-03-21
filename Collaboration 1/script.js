@@ -106,7 +106,7 @@ function init() {
 
     // ground
     const groundGeo = new THREE.PlaneGeometry(2000, 2000);
-    const groundMat = new THREE.MeshPhongMaterial({ color: 0x4b4b4b });
+    const groundMat = new THREE.MeshPhongMaterial({ color: 0xbfd9e6 });
     const ground = new THREE.Mesh(groundGeo, groundMat);
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = 0;
@@ -287,10 +287,10 @@ function makeTree3() {
     const trunk = makeBranch(85, 3, 0, 42, 0, 0, 0);
     group.add(trunk);
 
-    group.add(makeBranch(25, 1.8, -10, 68, 0, 0.7, 0));
-    group.add(makeBranch(25, 1.8, 10, 68, 0, -0.7, 0));
-    group.add(makeBranch(18, 1.2, -18, 83, 0, 1.0, 0));
-    group.add(makeBranch(18, 1.2, 18, 83, 0, -1.0, 0));
+    group.add(makeBranch(25, 1.8, -8, 60, 0, 0.5, 0));
+    group.add(makeBranch(25, 1.8, 8, 60, 0, -0.5, 0));
+    group.add(makeBranch(18, 1.2, -12, 70, 0, 0.8, 0));
+    group.add(makeBranch(18, 1.2, 12, 70, 0, -0.8, 0));
 
     return group;
 }
