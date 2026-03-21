@@ -260,10 +260,10 @@ function makeTree1() {
     const trunk = makeBranch(70, 3.5, 0, 35, 0, 0, 0);
     group.add(trunk);
 
-    group.add(makeBranch(30, 1.5, -12, 60, 0, 0.8, 0));
-    group.add(makeBranch(30, 1.5, 12, 60, 0, -0.8, 0));
-    group.add(makeBranch(22, 1.5, -18, 78, 0, 1.1, 0));
-    group.add(makeBranch(22, 1.5, 18, 78, 0, -1.1, 0));
+    group.add(makeBranch(22, 1.5, -12, 60, 0, 0.8, 0));
+    group.add(makeBranch(22, 1.5, 12, 60, 0, -0.8, 0));
+    group.add(makeBranch(20, 1.5, -10, 70, 0, 0.8, 0));
+    group.add(makeBranch(20, 1.5, 10, 70, 0, -0.8, 0));
 
     return group;
 }
@@ -276,7 +276,7 @@ function makeTree2() {
 
     group.add(makeBranch(35, 2, -15, 55, 0, 1.0, 0));
     group.add(makeBranch(26, 1.8, 15, 65, 0, -0.6, 0));
-    group.add(makeBranch(18, 1.2, -28, 72, 0, 1.2, 0));
+    group.add(makeBranch(16, 1.2, -8, 66, 0, 0.6, 0));
 
     return group;
 }
@@ -289,8 +289,8 @@ function makeTree3() {
 
     group.add(makeBranch(25, 1.8, -8, 60, 0, 0.5, 0));
     group.add(makeBranch(25, 1.8, 8, 60, 0, -0.5, 0));
-    group.add(makeBranch(18, 1.2, -12, 70, 0, 0.8, 0));
-    group.add(makeBranch(18, 1.2, 12, 70, 0, -0.8, 0));
+    group.add(makeBranch(18, 1.2, -8, 66, 0, 0.6, 0));
+    group.add(makeBranch(18, 1.2, 8, 66, 0, -0.6, 0));
 
     return group;
 }
