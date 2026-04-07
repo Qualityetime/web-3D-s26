@@ -227,7 +227,7 @@ function init() {
     // Ground
     const earth = new THREE.PlaneGeometry(4000, 4000);
     const ground = new THREE.MeshPhongMaterial({ color: 0xe10dee, flatShading: true });
-    const mesh2 = new THREE.InstancedMesh(earth, ground, 500);
+    const mesh2 = new THREE.InstancedMesh(earth, ground, 200);
     mesh2.translateY(-80);
     mesh2.rotateX(-1.5708);
     scene.add(mesh2);
