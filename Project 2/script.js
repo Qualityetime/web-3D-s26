@@ -32,338 +32,337 @@ let group;
 init();
 
 function init() {
-// scene setup
-canvas = document.getElementById("3-holder");
-scene = new THREE.Scene();
-scene.background = new THREE.Color(0x1e1b18);
-scene.fog = new THREE.FogExp2(0x1e1b18, 0.003);
+    // scene setup
+    canvas = document.getElementById("3-holder");
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x1e1b18);
+    scene.fog = new THREE.FogExp2(0x1e1b18, 0.003);
 
-renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(innerWidth, innerHeight);
-renderer.setAnimationLoop(animate);
-canvas.appendChild(renderer.domElement);
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setAnimationLoop(animate);
+    canvas.appendChild(renderer.domElement);
 
-// camera
-camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-camera.position.set(0, 10, 0);
+    // camera
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+    camera.position.set(0, 10, 0);
 
-// controls
-controls = new PointerLockControls(camera, document.body);
+    // controls
+    controls = new PointerLockControls(camera, document.body);
 
-const blocker = document.getElementById("blocker");
-const instructions = document.getElementById("instructions");
+    const blocker = document.getElementById("blocker");
+    const instructions = document.getElementById("instructions");
 
-instructions.addEventListener("click", function () {
-controls.lock();
-});
+    instructions.addEventListener("click", function () {
+        controls.lock();
+    });
 
-controls.addEventListener("lock", function () {
-instructions.style.display = "none";
-blocker.style.display = "none";
-});
+    controls.addEventListener("lock", function () {
+        instructions.style.display = "none";
+        blocker.style.display = "none";
+    });
 
-controls.addEventListener("unlock", function () {
-blocker.style.display = "block";
-instructions.style.display = "";
-});
+    controls.addEventListener("unlock", function () {
+        blocker.style.display = "block";
+        instructions.style.display = "";
+    });
 
-scene.add(controls.object);
+    scene.add(controls.object);
 
-const onKeyDown = function (event) {
-switch (event.code) {
-case "ArrowUp":
-case "KeyW":
-moveForward = true;
-break;
-case "ArrowLeft":
-case "KeyA":
-moveLeft = true;
-break;
-case "ArrowDown":
-case "KeyS":
-moveBackward = true;
-break;
-case "ArrowRight":
-case "KeyD":
-moveRight = true;
-break;
-case "Space":
-if (canJump === true) velocity.y += 350;
-canJump = false;
-break;
-}
-};
+    const onKeyDown = function (event) {
+        switch (event.code) {
+            case "ArrowUp":
+            case "KeyW":
+                moveForward = true;
+                break;
+            case "ArrowLeft":
+            case "KeyA":
+                moveLeft = true;
+                break;
+            case "ArrowDown":
+            case "KeyS":
+                moveBackward = true;
+                break;
+            case "ArrowRight":
+            case "KeyD":
+                moveRight = true;
+                break;
+            case "Space":
+                if (canJump === true) velocity.y += 350;
+                canJump = false;
+                break;
+        }
+    };
 
-const onKeyUp = function (event) {
-switch (event.code) {
-case "ArrowUp":
-case "KeyW":
-moveForward = false;
-break;
-case "ArrowLeft":
-case "KeyA":
-moveLeft = false;
-break;
-case "ArrowDown":
-case "KeyS":
-moveBackward = false;
-break;
-case "ArrowRight":
-case "KeyD":
-moveRight = false;
-break;
-}
-};
+    const onKeyUp = function (event) {
+        switch (event.code) {
+            case "ArrowUp":
+            case "KeyW":
+                moveForward = false;
+                break;
+            case "ArrowLeft":
+            case "KeyA":
+                moveLeft = false;
+                break;
+            case "ArrowDown":
+            case "KeyS":
+                moveBackward = false;
+                break;
+            case "ArrowRight":
+            case "KeyD":
+                moveRight = false;
+                break;
+        }
+    };
 
-document.addEventListener("keydown", onKeyDown);
-document.addEventListener("keyup", onKeyUp);
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("keyup", onKeyUp);
 
-raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10);
+    raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10);
 
-// materials
-const wallMat = new THREE.MeshPhongMaterial({ color: 0x4a3728 });
-const trimMat = new THREE.MeshPhongMaterial({ color: 0x24170f });
-const ceilingMat = new THREE.MeshPhongMaterial({ color: 0x3a2618 });
-const floorMat = new THREE.MeshPhongMaterial({ color: 0x5a3c28 });
-const displayMat = new THREE.MeshPhongMaterial({
-color: 0xcbb89d,
-side: THREE.DoubleSide
-});
+    // materials
+    const wallMat = new THREE.MeshPhongMaterial({ color: 0x4a3728 });
+    const trimMat = new THREE.MeshPhongMaterial({ color: 0x24170f });
+    const ceilingMat = new THREE.MeshPhongMaterial({ color: 0x3a2618 });
+    const floorMat = new THREE.MeshPhongMaterial({ color: 0x5a3c28 });
+    const displayMat = new THREE.MeshPhongMaterial({
+        color: 0xcbb89d,
+        side: THREE.DoubleSide
+    });
 
-//walls
-const shortWall = new THREE.BoxGeometry(300, 200, 10);
-const longWall = new THREE.BoxGeometry(10, 200, 510);
+    //walls
+    const shortWall = new THREE.BoxGeometry(300, 200, 10);
+    const longWall = new THREE.BoxGeometry(10, 200, 510);
 
-const backWall = new THREE.Mesh(shortWall, wallMat);
-backWall.position.set(0, 0, -250);
-scene.add(backWall);
+    const backWall = new THREE.Mesh(shortWall, wallMat);
+    backWall.position.set(0, 0, -250);
+    scene.add(backWall);
 
-const leftWall = new THREE.Mesh(longWall, wallMat);
-leftWall.position.set(-150, 0, 0);
-scene.add(leftWall);
+    const leftWall = new THREE.Mesh(longWall, wallMat);
+    leftWall.position.set(-150, 0, 0);
+    scene.add(leftWall);
 
-const rightWall = new THREE.Mesh(longWall, wallMat);
-rightWall.position.set(150, 0, 0);
-scene.add(rightWall);
+    const rightWall = new THREE.Mesh(longWall, wallMat);
+    rightWall.position.set(150, 0, 0);
+    scene.add(rightWall);
 
-const frontSide = new THREE.BoxGeometry(100, 125, 10);
-const frontLeft = new THREE.Mesh(frontSide, wallMat);
-frontLeft.position.set(-100, -20, 250);
-scene.add(frontLeft);
+    const frontSide = new THREE.BoxGeometry(100, 125, 10);
+    const frontLeft = new THREE.Mesh(frontSide, wallMat);
+    frontLeft.position.set(-100, -20, 250);
+    scene.add(frontLeft);
 
-const frontRight = new THREE.Mesh(frontSide, wallMat);
-frontRight.position.set(100, -20, 250);
-scene.add(frontRight);
+    const frontRight = new THREE.Mesh(frontSide, wallMat);
+    frontRight.position.set(100, -20, 250);
+    scene.add(frontRight);
 
-const frontTop = new THREE.BoxGeometry(300, 57.5, 10);
-const frontMiddle = new THREE.Mesh(frontTop, wallMat);
-frontMiddle.position.set(0, 70, 250);
-scene.add(frontMiddle);
+    const frontTop = new THREE.BoxGeometry(300, 57.5, 10);
+    const frontMiddle = new THREE.Mesh(frontTop, wallMat);
+    frontMiddle.position.set(0, 70, 250);
+    scene.add(frontMiddle);
 
-//ceiling
-const ceilingShape = new THREE.BoxGeometry(350, 10, 550);
-const ceilingMain = new THREE.Mesh(ceilingShape, ceilingMat);
-ceilingMain.position.set(0, 100, 0);
-scene.add(ceilingMain);
+    //ceiling
+    const ceilingShape = new THREE.BoxGeometry(350, 10, 550);
+    const ceilingMain = new THREE.Mesh(ceilingShape, ceilingMat);
+    ceilingMain.position.set(0, 100, 0);
+    scene.add(ceilingMain);
 
-//floor
-const floorGeo = new THREE.BoxGeometry(350, 10, 550);
-const floor = new THREE.Mesh(floorGeo, floorMat);
-floor.position.set(0, -85, 0);
-scene.add(floor);
+    //floor
+    const floorGeo = new THREE.BoxGeometry(350, 10, 550);
+    const floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.position.set(0, -85, 0);
+    scene.add(floor);
 
-// support beams
-const beamGeo = new THREE.BoxGeometry(12, 200, 12);
+    // support beams
+    const beamGeo = new THREE.BoxGeometry(12, 200, 12);
 
-const beam1 = new THREE.Mesh(beamGeo, trimMat);
-beam1.position.set(-110, 0, -180);
-scene.add(beam1);
+    const beam1 = new THREE.Mesh(beamGeo, trimMat);
+    beam1.position.set(-110, 0, -180);
+    scene.add(beam1);
 
-const beam2 = new THREE.Mesh(beamGeo, trimMat);
-beam2.position.set(110, 0, -180);
-scene.add(beam2);
+    const beam2 = new THREE.Mesh(beamGeo, trimMat);
+    beam2.position.set(110, 0, -180);
+    scene.add(beam2);
 
-const beam3 = new THREE.Mesh(beamGeo, trimMat);
-beam3.position.set(-110, 0, 0);
-scene.add(beam3);
+    const beam3 = new THREE.Mesh(beamGeo, trimMat);
+    beam3.position.set(-110, 0, 0);
+    scene.add(beam3);
 
-const beam4 = new THREE.Mesh(beamGeo, trimMat);
-beam4.position.set(110, 0, 0);
-scene.add(beam4);
+    const beam4 = new THREE.Mesh(beamGeo, trimMat);
+    beam4.position.set(110, 0, 0);
+    scene.add(beam4);
 
-const beam5 = new THREE.Mesh(beamGeo, trimMat);
-beam5.position.set(-110, 0, 180);
-scene.add(beam5);
+    const beam5 = new THREE.Mesh(beamGeo, trimMat);
+    beam5.position.set(-110, 0, 180);
+    scene.add(beam5);
 
-const beam6 = new THREE.Mesh(beamGeo, trimMat);
-beam6.position.set(110, 0, 180);
-scene.add(beam6);
+    const beam6 = new THREE.Mesh(beamGeo, trimMat);
+    beam6.position.set(110, 0, 180);
+    scene.add(beam6);
 
-// top cross beams
-const crossGeo = new THREE.BoxGeometry(240, 10, 12);
+    // top cross beams
+    const crossGeo = new THREE.BoxGeometry(240, 10, 12);
 
-const cross1 = new THREE.Mesh(crossGeo, trimMat);
-cross1.position.set(0, 70, -180);
-scene.add(cross1);
+    const cross1 = new THREE.Mesh(crossGeo, trimMat);
+    cross1.position.set(0, 70, -180);
+    scene.add(cross1);
 
-const cross2 = new THREE.Mesh(crossGeo, trimMat);
-cross2.position.set(0, 70, 0);
-scene.add(cross2);
+    const cross2 = new THREE.Mesh(crossGeo, trimMat);
+    cross2.position.set(0, 70, 0);
+    scene.add(cross2);
 
-const cross3 = new THREE.Mesh(crossGeo, trimMat);
-cross3.position.set(0, 70, 180);
-scene.add(cross3);
+    const cross3 = new THREE.Mesh(crossGeo, trimMat);
+    cross3.position.set(0, 70, 180);
+    scene.add(cross3);
 
-// archways
-// left side arch
-const leftArchTopGeo = new THREE.BoxGeometry(10, 25, 80);
-const leftArchTop = new THREE.Mesh(leftArchTopGeo, trimMat);
-leftArchTop.position.set(-145, 30, -100);
-scene.add(leftArchTop);
+    // archways
+    // left side arch
+    const leftArchTopGeo = new THREE.BoxGeometry(10, 25, 80);
+    const leftArchTop = new THREE.Mesh(leftArchTopGeo, trimMat);
+    leftArchTop.position.set(-145, 30, -100);
+    scene.add(leftArchTop);
 
-const leftArchSideGeo = new THREE.BoxGeometry(10, 110, 12);
+    const leftArchSideGeo = new THREE.BoxGeometry(10, 110, 12);
 
-const leftArchSide1 = new THREE.Mesh(leftArchSideGeo, trimMat);
-leftArchSide1.position.set(-145, -28, -135);
-scene.add(leftArchSide1);
+    const leftArchSide1 = new THREE.Mesh(leftArchSideGeo, trimMat);
+    leftArchSide1.position.set(-145, -28, -135);
+    scene.add(leftArchSide1);
 
-const leftArchSide2 = new THREE.Mesh(leftArchSideGeo, trimMat);
-leftArchSide2.position.set(-145, -28, -65);
-scene.add(leftArchSide2);
+    const leftArchSide2 = new THREE.Mesh(leftArchSideGeo, trimMat);
+    leftArchSide2.position.set(-145, -28, -65);
+    scene.add(leftArchSide2);
 
-// right side arch
-const rightArchTop = new THREE.Mesh(leftArchTopGeo, trimMat);
-rightArchTop.position.set(145, 30, 100);
-scene.add(rightArchTop);
+    // right side arch
+    const rightArchTop = new THREE.Mesh(leftArchTopGeo, trimMat);
+    rightArchTop.position.set(145, 30, 100);
+    scene.add(rightArchTop);
 
-const rightArchSide1 = new THREE.Mesh(leftArchSideGeo, trimMat);
-rightArchSide1.position.set(145, -28, 65);
-scene.add(rightArchSide1);
+    const rightArchSide1 = new THREE.Mesh(leftArchSideGeo, trimMat);
+    rightArchSide1.position.set(145, -28, 65);
+    scene.add(rightArchSide1);
 
-const rightArchSide2 = new THREE.Mesh(leftArchSideGeo, trimMat);
-rightArchSide2.position.set(145, -28, 135);
-scene.add(rightArchSide2);
+    const rightArchSide2 = new THREE.Mesh(leftArchSideGeo, trimMat);
+    rightArchSide2.position.set(145, -28, 135);
+    scene.add(rightArchSide2);
 
-// Posters
-// back wall big display
-const displayGeo1 = new THREE.PlaneGeometry(90, 120);
-const display1 = new THREE.Mesh(displayGeo1, displayMat);
-display1.position.set(0, 5, -244.5);
-scene.add(display1);
+    // Posters
+    // back wall big display
+    const displayGeo1 = new THREE.PlaneGeometry(90, 120);
+    const display1 = new THREE.Mesh(displayGeo1, displayMat);
+    display1.position.set(0, 5, -244.5);
+    scene.add(display1);
 
-// back wall side displays
-const displayGeo2 = new THREE.PlaneGeometry(45, 60);
+    // back wall side displays
+    const displayGeo2 = new THREE.PlaneGeometry(45, 60);
 
-const display2 = new THREE.Mesh(displayGeo2, displayMat);
-display2.position.set(-95, 10, -244.5);
-scene.add(display2);
+    const display2 = new THREE.Mesh(displayGeo2, displayMat);
+    display2.position.set(-95, 10, -244.5);
+    scene.add(display2);
 
-const display3 = new THREE.Mesh(displayGeo2, displayMat);
-display3.position.set(95, 10, -244.5);
-scene.add(display3);
+    const display3 = new THREE.Mesh(displayGeo2, displayMat);
+    display3.position.set(95, 10, -244.5);
+    scene.add(display3);
 
-// left wall displays
-const sideDisplayGeo = new THREE.PlaneGeometry(50, 70);
+    // left wall displays
+    const sideDisplayGeo = new THREE.PlaneGeometry(50, 70);
 
-const display4 = new THREE.Mesh(sideDisplayGeo, displayMat);
-display4.position.set(-144.5, 5, -10);
-display4.rotation.y = Math.PI / 2;
-scene.add(display4);
+    const display4 = new THREE.Mesh(sideDisplayGeo, displayMat);
+    display4.position.set(-144.5, 5, -10);
+    display4.rotation.y = Math.PI / 2;
+    scene.add(display4);
 
-const display5 = new THREE.Mesh(sideDisplayGeo, displayMat);
-display5.position.set(-144.5, 5, 110);
-display5.rotation.y = Math.PI / 2;
-scene.add(display5);
+    const display5 = new THREE.Mesh(sideDisplayGeo, displayMat);
+    display5.position.set(-144.5, 5, 110);
+    display5.rotation.y = Math.PI / 2;
+    scene.add(display5);
 
-// right wall displays
-const display6 = new THREE.Mesh(sideDisplayGeo, displayMat);
-display6.position.set(144.5, 5, -110);
-display6.rotation.y = -Math.PI / 2;
-scene.add(display6);
+    // right wall displays
+    const display6 = new THREE.Mesh(sideDisplayGeo, displayMat);
+    display6.position.set(144.5, 5, -110);
+    display6.rotation.y = -Math.PI / 2;
+    scene.add(display6);
 
-const display7 = new THREE.Mesh(sideDisplayGeo, displayMat);
-display7.position.set(144.5, 5, 10);
-display7.rotation.y = -Math.PI / 2;
-scene.add(display7);
+    const display7 = new THREE.Mesh(sideDisplayGeo, displayMat);
+    display7.position.set(144.5, 5, 10);
+    display7.rotation.y = -Math.PI / 2;
+    scene.add(display7);
 
+    // lighting
+    const dirLight1 = new THREE.DirectionalLight(0xffe6b8, 2.2);
+    dirLight1.position.set(1, 2, 1);
+    scene.add(dirLight1);
 
-// lighting
-const dirLight1 = new THREE.DirectionalLight(0xffe6b8, 2.2);
-dirLight1.position.set(1, 2, 1);
-scene.add(dirLight1);
+    const dirLight2 = new THREE.DirectionalLight(0x8a6a4a, 1.2);
+    dirLight2.position.set(-1, 1, -1);
+    scene.add(dirLight2);
 
-const dirLight2 = new THREE.DirectionalLight(0x8a6a4a, 1.2);
-dirLight2.position.set(-1, 1, -1);
-scene.add(dirLight2);
+    const ambientLight = new THREE.AmbientLight(0x3a2d22, 1.5);
+    scene.add(ambientLight);
 
-const ambientLight = new THREE.AmbientLight(0x3a2d22, 1.5);
-scene.add(ambientLight);
+    const pointLight1 = new THREE.PointLight(0xffcc88, 20, 250);
+    pointLight1.position.set(0, 55, -120);
+    scene.add(pointLight1);
 
-const pointLight1 = new THREE.PointLight(0xffcc88, 20, 250);
-pointLight1.position.set(0, 55, -120);
-scene.add(pointLight1);
-
-const pointLight2 = new THREE.PointLight(0xffcc88, 15, 220);
-pointLight2.position.set(0, 55, 120);
-scene.add(pointLight2);
+    const pointLight2 = new THREE.PointLight(0xffcc88, 15, 220);
+    pointLight2.position.set(0, 55, 120);
+    scene.add(pointLight2);
 }
 
 function animate() {
-const time = performance.now();
+    const time = performance.now();
 
-if (controls.isLocked === true) {
-const delta = (time - prevTime) / 1000;
+    if (controls.isLocked === true) {
+        const delta = (time - prevTime) / 1000;
 
-velocity.x -= velocity.x * 10.0 * delta;
-velocity.z -= velocity.z * 10.0 * delta;
-velocity.y -= 9.8 * 100.0 * delta;
+        velocity.x -= velocity.x * 10.0 * delta;
+        velocity.z -= velocity.z * 10.0 * delta;
+        velocity.y -= 9.8 * 100.0 * delta;
 
-direction.z = Number(moveForward) - Number(moveBackward);
-direction.x = Number(moveRight) - Number(moveLeft);
-direction.normalize();
+        direction.z = Number(moveForward) - Number(moveBackward);
+        direction.x = Number(moveRight) - Number(moveLeft);
+        direction.normalize();
 
-if (moveForward || moveBackward) velocity.z -= direction.z * 400.0 * delta;
-if (moveLeft || moveRight) velocity.x -= direction.x * 400.0 * delta;
+        if (moveForward || moveBackward) velocity.z -= direction.z * 400.0 * delta;
+        if (moveLeft || moveRight) velocity.x -= direction.x * 400.0 * delta;
 
-controls.moveRight(-velocity.x * delta);
-controls.moveForward(-velocity.z * delta);
+        controls.moveRight(-velocity.x * delta);
+        controls.moveForward(-velocity.z * delta);
 
-controls.object.position.y += velocity.y * delta;
+        controls.object.position.y += velocity.y * delta;
 
-if (controls.object.position.y < 10) {
-velocity.y = 0;
-controls.object.position.y = 10;
-canJump = true;
-}
-}
+        if (controls.object.position.y < 10) {
+            velocity.y = 0;
+            controls.object.position.y = 10;
+            canJump = true;
+        }
+    }
 
-prevTime = time;
-render();
+    prevTime = time;
+    render();
 }
 
 function render() {
-renderer.render(scene, camera);
+    renderer.render(scene, camera);
 }
 
 function createText() {
-textGeo = new TextGeometry(text, {
-font: font,
-size: 14,
-depth: 6,
-curveSegments: 4,
-bevelThickness: 1,
-bevelSize: 0.8,
-bevelEnabled: true
-});
+    textGeo = new TextGeometry(text, {
+        font: font,
+        size: 14,
+        depth: 6,
+        curveSegments: 4,
+        bevelThickness: 1,
+        bevelSize: 0.8,
+        bevelEnabled: true
+    });
 
-textGeo.computeBoundingBox();
-const centerOffset = -0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
+    textGeo.computeBoundingBox();
+    const centerOffset = -0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
 
-textMesh1 = new THREE.Mesh(textGeo, materials);
-textMesh1.position.x = centerOffset;
-textMesh1.position.z = -170;
-textMesh1.position.y = -95;
-textMesh1.rotation.y = 0;
+    textMesh1 = new THREE.Mesh(textGeo, materials);
+    textMesh1.position.x = centerOffset;
+    textMesh1.position.z = -170;
+    textMesh1.position.y = -95;
+    textMesh1.rotation.y = 0;
 
-group.add(textMesh1);
+    group.add(textMesh1);
 }
