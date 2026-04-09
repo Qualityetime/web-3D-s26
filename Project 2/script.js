@@ -120,7 +120,7 @@ document.addEventListener("keyup", onKeyUp);
 
 raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10);
 
-// ---------------- ROOM MATERIALS ----------------
+// materials
 const wallMat = new THREE.MeshPhongMaterial({ color: 0x4a3728 });
 const trimMat = new THREE.MeshPhongMaterial({ color: 0x24170f });
 const ceilingMat = new THREE.MeshPhongMaterial({ color: 0x3a2618 });
@@ -130,7 +130,7 @@ color: 0xcbb89d,
 side: THREE.DoubleSide
 });
 
-// ---------------- WALLS ----------------
+//walls
 const shortWall = new THREE.BoxGeometry(300, 200, 10);
 const longWall = new THREE.BoxGeometry(10, 200, 510);
 
@@ -160,19 +160,19 @@ const frontMiddle = new THREE.Mesh(frontTop, wallMat);
 frontMiddle.position.set(0, 70, 250);
 scene.add(frontMiddle);
 
-// ---------------- CEILING ----------------
+//ceiling
 const ceilingShape = new THREE.BoxGeometry(350, 10, 550);
 const ceilingMain = new THREE.Mesh(ceilingShape, ceilingMat);
 ceilingMain.position.set(0, 100, 0);
 scene.add(ceilingMain);
 
-// ---------------- FLOOR ----------------
+//floor
 const floorGeo = new THREE.BoxGeometry(350, 10, 550);
 const floor = new THREE.Mesh(floorGeo, floorMat);
 floor.position.set(0, -85, 0);
 scene.add(floor);
 
-// ---------------- SUPPORT BEAMS ----------------
+// support beams
 const beamGeo = new THREE.BoxGeometry(12, 200, 12);
 
 const beam1 = new THREE.Mesh(beamGeo, trimMat);
@@ -214,7 +214,7 @@ const cross3 = new THREE.Mesh(crossGeo, trimMat);
 cross3.position.set(0, 70, 180);
 scene.add(cross3);
 
-// ---------------- SIMPLE ARCHWAYS ----------------
+// archways
 // left side arch
 const leftArchTopGeo = new THREE.BoxGeometry(10, 25, 80);
 const leftArchTop = new THREE.Mesh(leftArchTopGeo, trimMat);
@@ -244,7 +244,7 @@ const rightArchSide2 = new THREE.Mesh(leftArchSideGeo, trimMat);
 rightArchSide2.position.set(145, -28, 135);
 scene.add(rightArchSide2);
 
-// ---------------- DISPLAY SPOTS FOR YOUR PNGS ----------------
+// Posters
 // back wall big display
 const displayGeo1 = new THREE.PlaneGeometry(90, 120);
 const display1 = new THREE.Mesh(displayGeo1, displayMat);
@@ -286,7 +286,7 @@ display7.position.set(144.5, 5, 10);
 display7.rotation.y = -Math.PI / 2;
 scene.add(display7);
 
-// ---------------- TEXT ----------------
+// text
 materials = [
 new THREE.MeshPhongMaterial({ color: 0xd2c2a8, flatShading: true }),
 new THREE.MeshPhongMaterial({ color: 0x3b2a1d })
@@ -303,7 +303,7 @@ group = new THREE.Group();
 group.position.y = 100;
 scene.add(group);
 
-// ---------------- LIGHTS ----------------
+// lighting
 const dirLight1 = new THREE.DirectionalLight(0xffe6b8, 2.2);
 dirLight1.position.set(1, 2, 1);
 scene.add(dirLight1);
