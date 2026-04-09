@@ -1,8 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Title</title>
+        <title>Web 3D - Spring 2026 - Room Demo</title>
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap"
+            rel="stylesheet" />
+       
+        <!-- Needed for Three.js resources to connect to script. -->
+        <script type="importmap">
+			{
+				"imports": {
+					"three": "../src/three.module.js",
+					"three/addons/": "./src/"
+				}
+			}
+		</script>
+        <!-- Three.js scene script, must contain module type. -->
+        <script type= "module" src="./script.js"></script>
     </head>
-    <body></body>
+    <body>
+        <main>
+            <div id="blocker">
+			<div id="instructions">
+                <p style="font-size:36px">
+					Project 2- Cabnet of Curoiosities
+				</p>
+				<p style="font-size:36px">
+					Click to play
+				</p>
+				<p>
+					Move: WASD<br/>
+					Jump: SPACE<br/>
+					Look: MOUSE
+				</p>
+			</div>
+		</div>
+            <!-- Div for Three.js scene. -->
+            <div id="3-holder"></div>
+        </main>
+    </body>
 </html>
