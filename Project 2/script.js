@@ -286,22 +286,6 @@ display7.position.set(144.5, 5, 10);
 display7.rotation.y = -Math.PI / 2;
 scene.add(display7);
 
-// text
-materials = [
-new THREE.MeshPhongMaterial({ color: 0xd2c2a8, flatShading: true }),
-new THREE.MeshPhongMaterial({ color: 0x3b2a1d })
-];
-
-const loader = new TTFLoader();
-
-loader.load("../assets/CourierPrime-Bold.ttf", function (json) {
-font = new Font(json);
-createText();
-});
-
-group = new THREE.Group();
-group.position.y = 100;
-scene.add(group);
 
 // lighting
 const dirLight1 = new THREE.DirectionalLight(0xffe6b8, 2.2);
