@@ -22,9 +22,9 @@ main {
 h1 {
   font-family: "CarterOne Regular", Georgia;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 500;
   font-style: normal;
-  font-size: 60px;
+  font-size: 70px;
   font-variation-settings:
     "slnt" 0,
     "CRSV" 0.5,
