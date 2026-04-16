@@ -297,7 +297,7 @@ function init() {
     scene.add(display9);
 
     const display10 = new THREE.Mesh(displayGeo2, displayMat);
-    display10.position.set(-100, -50, 244.5);
+    display10.position.set(100, -50, 244.5);
     display10.rotation.y = Math.PI;
     scene.add(display10);
 
