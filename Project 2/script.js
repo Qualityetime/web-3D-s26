@@ -288,6 +288,18 @@ function init() {
     display10.rotation.y = -Math.PI / 2;
     scene.add(display10);
 
+    const lagoonTexture = new THREE.TextureLoader().load("./assets/lagoon.png");
+    const lagoonMat = new THREE.MeshBasicMaterial({
+        map: lagoonTexture,
+        transparent: true,
+        side: THREE.DoubleSide
+    });
+
+    const lagoonPoster = new THREE.Mesh(sideDisplayGeo, lagoonMat);
+    lagoonPoster.position.set(144.0, 5, 90);
+    lagoonPoster.rotation.y = -Math.PI / 2;
+    scene.add(lagoonPoster);
+
     // lighting
     const dirLight1 = new THREE.DirectionalLight(0xffe6b8, 2.2);
     dirLight1.position.set(1, 2, 1);
