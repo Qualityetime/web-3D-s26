@@ -231,16 +231,6 @@ function init() {
     leftArchSide2.position.set(-145, -28, -65);
     scene.add(leftArchSide2);
 
-    // right side arch
-    const rightArchTop = new THREE.Mesh(leftArchTopGeo, trimMat);
-    rightArchTop.position.set(145, 30, 100);
-    scene.add(rightArchTop);
-
-    const rightArchSide1 = new THREE.Mesh(leftArchSideGeo, trimMat);
-    rightArchSide1.position.set(145, -28, 65);
-    scene.add(rightArchSide1);
-
-
     // Posters
     // back wall big display
     const displayGeo1 = new THREE.PlaneGeometry(90, 120);
@@ -293,9 +283,9 @@ function init() {
     display9.rotation.y = Math.PI;
     scene.add(display9);
 
-    const display10 = new THREE.Mesh(displayGeo2, displayMat);
+    const display10 = new THREE.Mesh(sideDisplayGeo, displayMat);
     display10.position.set(144.5, 5, 90);
-    display10.rotation.y = Math.PI / 2;
+    display10.rotation.y = -Math.PI / 2;
     scene.add(display10);
 
     // lighting
