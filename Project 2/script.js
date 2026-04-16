@@ -285,19 +285,19 @@ function init() {
     display7.position.set(144.5, 5, 10);
     display7.rotation.y = -Math.PI / 2;
     scene.add(display7);
-
+    
     const display8 = new THREE.Mesh(sideDisplayGeo, displayMat);
-    display8.position.set(-144.5, 5, -170);
+    display8.position.set(-144.5, 5, -90);
     display8.rotation.y = Math.PI / 2;
     scene.add(display8);
 
     const display9 = new THREE.Mesh(sideDisplayGeo, displayMat);
-    display9.position.set(144.5, 5, 170);
+    display9.position.set(144.5, 5, 90);
     display9.rotation.y = -Math.PI / 2;
     scene.add(display9);
 
     const display10 = new THREE.Mesh(displayGeo2, displayMat);
-    display10.position.set(0, -55, 244.5);
+    display10.position.set(0, 55, 244.5);
     display10.rotation.y = Math.PI;
     scene.add(display10);
 
@@ -336,8 +336,8 @@ function animate() {
         direction.x = Number(moveRight) - Number(moveLeft);
         direction.normalize();
 
-        if (moveForward || moveBackward) velocity.z -= direction.z * 650.0 * delta;
-        if (moveLeft || moveRight) velocity.x -= direction.x * 650.0 * delta;
+        if (moveForward || moveBackward) velocity.z -= direction.z * 1000.0 * delta;
+        if (moveLeft || moveRight) velocity.x -= direction.x * 1000.0 * delta;
 
         controls.moveRight(-velocity.x * delta);
         controls.moveForward(-velocity.z * delta);
