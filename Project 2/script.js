@@ -298,7 +298,7 @@ function init() {
 
     const display10 = new THREE.Mesh(displayGeo2, displayMat);
     display10.position.set(144.5, 5, 90);
-    display10.rotation.y = Math.PI;
+    display10.rotation.y = Math.PI / 2;
     scene.add(display10);
 
     // lighting
