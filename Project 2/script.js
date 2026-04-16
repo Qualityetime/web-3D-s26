@@ -240,9 +240,6 @@ function init() {
     rightArchSide1.position.set(145, -28, 65);
     scene.add(rightArchSide1);
 
-    const rightArchSide2 = new THREE.Mesh(leftArchSideGeo, trimMat);
-    rightArchSide2.position.set(145, -28, 135);
-    scene.add(rightArchSide2);
 
     // Posters
     // back wall big display
