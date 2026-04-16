@@ -286,27 +286,20 @@ function init() {
     display7.rotation.y = -Math.PI / 2;
     scene.add(display7);
 
-    const display8 = new THREE.Mesh(sideDisplayGeo, displayMat);
-    display8.position.set(-144.5, 5, -90);
-    display8.rotation.y = Math.PI / 2;
+    const display8 = new THREE.Mesh(displayGeo2, displayMat);
+    display8.position.set(-100, 0, 244.5);
+    display8.rotation.y = Math.PI;
     scene.add(display8);
 
-    const display9 = new THREE.Mesh(sideDisplayGeo, displayMat);
-    display9.position.set(144.5, 5, 90);
-    display9.rotation.y = -Math.PI / 2;
+    const display9 = new THREE.Mesh(displayGeo2, displayMat);
+    display9.position.set(100, 0, 244.5);
+    display9.rotation.y = Math.PI;
     scene.add(display9);
 
-    // front wall left of doorway
     const display10 = new THREE.Mesh(displayGeo2, displayMat);
-    display10.position.set(-100, -15, 244.5);
+    display10.position.set(-100, -50, 244.5);
     display10.rotation.y = Math.PI;
     scene.add(display10);
-
-    // front wall right of doorway
-    const display11 = new THREE.Mesh(displayGeo2, displayMat);
-    display11.position.set(100, -15, 244.5);
-    display11.rotation.y = Math.PI;
-    scene.add(display11);
 
     // lighting
     const dirLight1 = new THREE.DirectionalLight(0xffe6b8, 2.2);
