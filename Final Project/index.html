@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MYR Portfolio</title>
+
+        <style>
+            :root {
+                --obsidian-black: #0d0d0d;
+                --night-iron: #161412;
+                --smoked-umber: #27211e;
+                --weathered-stone: #554b40;
+                --aged-gold: #a38762;
+                --parchment-glow: #c9a87d;
+                --ember-red: #592b29;
+                --soft-white: #e7d7b8;
+                --muted-text: #9c8f7a;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                background: var(--obsidian-black);
+                color: var(--soft-white);
+                font-family: Georgia, "Times New Roman", serif;
+                overflow-x: hidden;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: radial-gradient(circle at 70% 20%, rgba(201, 168, 125, 0.16), transparent 35%),
+                    radial-gradient(circle at 20% 10%, rgba(89, 43, 41, 0.18), transparent 30%),
+                    linear-gradient(180deg, rgba(13, 13, 13, 0.2), rgba(13, 13, 13, 1));
+                pointer-events: none;
+                z-index: -3;
+            }
+
+            .site-border {
+                position: fixed;
+                inset: 18px;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                pointer-events: none;
+                z-index: 100;
+            }
+
+            header {
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 50;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 28px 56px;
+                background: linear-gradient(to bottom, rgba(13, 13, 13, 0.92), rgba(13, 13, 13, 0));
+                backdrop-filter: blur(4px);
+            }
+
+            .logo {
+                font-size: 2.2rem;
+                letter-spacing: 0.08em;
+                color: var(--parchment-glow);
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            nav {
+                display: flex;
+                gap: 38px;
+                align-items: center;
+            }
+
+            nav a {
+                color: var(--soft-white);
+                text-decoration: none;
+                font-size: 0.78rem;
+                letter-spacing: 0.28em;
+                text-transform: uppercase;
+                transition: color 0.25s ease;
+                font-family: Arial, sans-serif;
+            }
+
+            nav a:hover,
+            nav a.active {
+                color: #b94b3f;
+            }
+
+            .hero {
+                min-height: 100vh;
+                display: grid;
+                grid-template-columns: 0.85fr 1.15fr;
+                align-items: center;
+                padding: 120px 64px 70px;
+                position: relative;
+                border-bottom: 1px solid rgba(163, 135, 98, 0.22);
+            }
+
+            .hero-text {
+                position: relative;
+                z-index: 2;
+                max-width: 620px;
+            }
+
+            .eyebrow {
+                color: #b94b3f;
+                font-family: Arial, sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.5em;
+                font-size: 0.75rem;
+                margin-bottom: 28px;
+            }
+
+            h1 {
+                font-size: clamp(3.4rem, 7vw, 7.4rem);
+                line-height: 0.92;
+                color: var(--parchment-glow);
+                font-weight: 500;
+                letter-spacing: -0.05em;
+                margin-bottom: 28px;
+            }
+
+            h1 span {
+                color: #c94e41;
+                font-style: italic;
+                font-size: 0.55em;
+                letter-spacing: -0.03em;
+            }
+
+            .hero-text p {
+                color: #b7aa92;
+                font-size: 1.05rem;
+                line-height: 1.75;
+                max-width: 430px;
+                margin-bottom: 32px;
+                font-family: Arial, sans-serif;
+            }
+
+            .button-row {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .primary-button {
+                color: var(--parchment-glow);
+                border: 1px solid rgba(201, 168, 125, 0.65);
+                padding: 16px 28px;
+                text-decoration: none;
+                font-family: Arial, sans-serif;
+                font-size: 0.72rem;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                transition: all 0.28s ease;
+                background: rgba(13, 13, 13, 0.45);
+            }
+
+            .primary-button:hover {
+                background: var(--parchment-glow);
+                color: var(--obsidian-black);
+                transform: translateY(-3px);
+                box-shadow: 0 12px 30px rgba(201, 168, 125, 0.16);
+            }
+
+            .hero-art {
+                height: 76vh;
+                min-height: 540px;
+                border-radius: 2px;
+                position: relative;
+                overflow: hidden;
+                background:
+                    linear-gradient(90deg, rgba(13, 13, 13, 0.98), rgba(13, 13, 13, 0.42), rgba(13, 13, 13, 0.15)),
+                    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=80")
+                        center/cover;
+                box-shadow: inset 0 0 140px rgba(13, 13, 13, 0.95);
+            }
+
+            .hero-art::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at 65% 35%, rgba(201, 168, 125, 0.45), transparent 16%),
+                    linear-gradient(to top, rgba(13, 13, 13, 0.95), transparent 45%);
+                mix-blend-mode: screen;
+                opacity: 0.7;
+            }
+
+            .hero-art::after {
+                content: "MYTHRON";
+                position: absolute;
+                right: -18px;
+                top: 50%;
+                transform: rotate(90deg);
+                color: rgba(201, 168, 125, 0.35);
+                font-family: Arial, sans-serif;
+                letter-spacing: 0.5em;
+                font-size: 0.7rem;
+            }
+
+            .figure-card {
+                position: absolute;
+                right: 10%;
+                bottom: 9%;
+                width: 260px;
+                height: 380px;
+                border: 1px solid rgba(201, 168, 125, 0.25);
+                background: linear-gradient(180deg, rgba(13, 13, 13, 0), rgba(13, 13, 13, 0.6)),
+                    radial-gradient(circle at center, rgba(201, 168, 125, 0.16), transparent 60%);
+                clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+                opacity: 0.92;
+                filter: blur(0.2px);
+            }
+
+            .section {
+                padding: 88px 64px;
+            }
+
+            .section-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 32px;
+            }
+
+            .section-title {
+                color: var(--parchment-glow);
+                font-size: 0.85rem;
+                letter-spacing: 0.36em;
+                text-transform: uppercase;
+                font-family: Arial, sans-serif;
+            }
+
+            .view-all {
+                color: #c94e41;
+                text-decoration: none;
+                font-family: Arial, sans-serif;
+                font-size: 0.75rem;
+                letter-spacing: 0.24em;
+                text-transform: uppercase;
+            }
+
+            .work-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+
+            .project-card {
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                background: rgba(22, 20, 18, 0.82);
+                transition:
+                    transform 0.28s ease,
+                    border-color 0.28s ease,
+                    background 0.28s ease;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .project-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(201, 168, 125, 0.8);
+                background: rgba(39, 33, 30, 0.96);
+            }
+
+            .project-image {
+                height: 210px;
+                background-size: cover;
+                background-position: center;
+                filter: grayscale(25%) contrast(1.1) brightness(0.8);
+                transition:
+                    transform 0.4s ease,
+                    filter 0.4s ease;
+            }
+
+            .project-card:hover .project-image {
+                transform: scale(1.06);
+                filter: grayscale(0%) contrast(1.08) brightness(0.95);
+            }
+
+            .img-1 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.15), rgba(13, 13, 13, 0.55)),
+                    url("https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=900&q=80");
+            }
+
+            .img-2 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)),
+                    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80");
+            }
+
+            .img-3 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)),
+                    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80");
+            }
+
+            .img-4 {
+                background-image: radial-gradient(circle at center, rgba(201, 168, 125, 0.34), transparent 45%),
+                    linear-gradient(135deg, #0d0d0d, #592b29 48%, #161412);
+            }
+
+            .project-info {
+                padding: 20px 20px 24px;
+                position: relative;
+            }
+
+            .project-info h3 {
+                color: var(--soft-white);
+                font-size: 1.35rem;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+
+            .project-info p {
+                color: #c94e41;
+                font-family: Arial, sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                font-size: 0.65rem;
+            }
+
+            .plus {
+                position: absolute;
+                right: 20px;
+                bottom: 18px;
+                color: #c94e41;
+                font-size: 1.4rem;
+            }
+
+            .about-layout {
+                display: grid;
+                grid-template-columns: 330px 1fr 1.2fr;
+                gap: 34px;
+                align-items: stretch;
+            }
+
+            .portrait {
+                min-height: 360px;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                background:
+                    linear-gradient(to top, rgba(13, 13, 13, 0.65), transparent),
+                    url("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80")
+                        center/cover;
+                filter: grayscale(65%) brightness(0.7) sepia(20%);
+            }
+
+            .about-text {
+                border-left: 1px solid rgba(163, 135, 98, 0.25);
+                padding-left: 28px;
+            }
+
+            .label {
+                color: #c94e41;
+                font-family: Arial, sans-serif;
+                letter-spacing: 0.22em;
+                text-transform: uppercase;
+                font-size: 0.72rem;
+                margin-bottom: 18px;
+            }
+
+            .about-text h2 {
+                color: var(--parchment-glow);
+                font-size: clamp(2rem, 3vw, 3.3rem);
+                line-height: 1.02;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
+
+            .about-text p {
+                font-family: Arial, sans-serif;
+                color: #b7aa92;
+                line-height: 1.7;
+                font-size: 0.95rem;
+                max-width: 460px;
+            }
+
+            .tools {
+                border: 1px solid rgba(163, 135, 98, 0.25);
+                padding: 28px;
+                background: linear-gradient(135deg, rgba(22, 20, 18, 0.9), rgba(13, 13, 13, 0.5)),
+                    repeating-linear-gradient(0deg, rgba(201, 168, 125, 0.04) 0 1px, transparent 1px 18px);
+            }
+
+            .tool-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+                margin-top: 26px;
+            }
+
+            .tool {
+                border: 1px solid rgba(163, 135, 98, 0.25);
+                padding: 22px 18px;
+                min-height: 110px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                transition:
+                    transform 0.25s ease,
+                    background 0.25s ease;
+            }
+
+            .tool:hover {
+                transform: translateY(-4px);
+                background: rgba(201, 168, 125, 0.08);
+            }
+
+            .tool strong {
+                color: var(--parchment-glow);
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+
+            .tool span {
+                font-family: Arial, sans-serif;
+                color: var(--muted-text);
+                font-size: 0.82rem;
+                line-height: 1.4;
+            }
+
+            footer {
+                padding: 56px 64px;
+                border-top: 1px solid rgba(163, 135, 98, 0.22);
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 30px;
+                align-items: center;
+                background: #0a0a0a;
+            }
+
+            footer h2 {
+                color: var(--parchment-glow);
+                font-size: 2rem;
+                letter-spacing: 0.08em;
+            }
+
+            footer p,
+            footer a {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                text-decoration: none;
+                line-height: 1.7;
+            }
+
+            .socials {
+                display: flex;
+                justify-content: flex-end;
+                gap: 14px;
+            }
+
+            .socials a {
+                width: 44px;
+                height: 44px;
+                border: 1px solid rgba(163, 135, 98, 0.45);
+                display: grid;
+                place-items: center;
+                color: var(--parchment-glow);
+                transition: all 0.25s ease;
+            }
+
+            .socials a:hover {
+                background: var(--parchment-glow);
+                color: var(--obsidian-black);
+                transform: translateY(-4px);
+            }
+
+            @media (max-width: 1050px) {
+                header {
+                    padding: 24px 28px;
+                }
+
+                nav {
+                    gap: 18px;
+                }
+
+                .hero {
+                    grid-template-columns: 1fr;
+                    padding: 120px 28px 50px;
+                }
+
+                .hero-art {
+                    margin-top: 40px;
+                    height: 52vh;
+                    min-height: 380px;
+                }
+
+                .section {
+                    padding: 70px 28px;
+                }
+
+                .work-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .about-layout {
+                    grid-template-columns: 1fr;
+                }
+
+                footer {
+                    grid-template-columns: 1fr;
+                    padding: 42px 28px;
+                }
+
+                .socials {
+                    justify-content: flex-start;
+                }
+            }
+
+            @media (max-width: 680px) {
+                header {
+                    position: absolute;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 18px;
+                }
+
+                nav {
+                    flex-wrap: wrap;
+                }
+
+                .work-grid,
+                .tool-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .section-header {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 18px;
+                }
+
+                .site-border {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="site-border"></div>
+
+        <header>
+            <a href="#" class="logo">MYR</a>
+            <nav>
+                <a href="#work" class="active">Work</a>
+                <a href="#about">About</a>
+                <a href="#resume">Resume</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="top">
+                <div class="hero-text">
+                    <div class="eyebrow">Portfolio</div>
+                    <h1>Animator,<br />Illustrator,<br /><span>and</span> Creative<br />Technologist.</h1>
+                    <p>
+                        I build immersive worlds through motion, design, and storytelling. This portfolio collects my
+                        animation, creative coding, 3D, and visual design work into one intentional space.
+                    </p>
+                    <div class="button-row">
+                        <a class="primary-button" href="#work">✦ View Work →</a>
+                    </div>
+                </div>
+
+                <div class="hero-art" aria-label="Cinematic hero artwork placeholder">
+                    <div class="figure-card"></div>
+                </div>
+            </section>
+
+            <section class="section" id="work">
+                <div class="section-header">
+                    <h2 class="section-title">✦ Featured Work</h2>
+                    <a class="view-all" href="#">View All Work →</a>
+                </div>
+
+                <div class="work-grid">
+                    <article class="project-card">
+                        <div class="project-image img-1"></div>
+                        <div class="project-info">
+                            <h3>Mythron</h3>
+                            <p>Cinematic Animation</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image img-2"></div>
+                        <div class="project-info">
+                            <h3>Cabinet of Curiosities</h3>
+                            <p>Illustration Series</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image img-3"></div>
+                        <div class="project-info">
+                            <h3>FlickPick</h3>
+                            <p>UI/UX & Motion Design</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image img-4"></div>
+                        <div class="project-info">
+                            <h3>p5.js Experiments</h3>
+                            <p>Creative Coding</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="about">
+                <div class="about-layout">
+                    <div class="portrait"></div>
+
+                    <div class="about-text">
+                        <div class="label">About</div>
+                        <h2>Designer at heart.<br />Storyteller by nature.</h2>
+                        <p>
+                            I am a multidisciplinary creative focused on animation, illustration, interactive design,
+                            and worldbuilding. My work combines cinematic visuals, strong character design, and
+                            technical tools to create projects that feel personal, immersive, and memorable.
+                        </p>
+                    </div>
+
+                    <div class="tools">
+                        <div class="label">Tools & Technologies</div>
+                        <div class="tool-grid">
+                            <div class="tool">
+                                <strong>Clip Studio Paint</strong>
+                                <span>2D animation, illustration, line work, and concept art.</span>
+                            </div>
+                            <div class="tool">
+                                <strong>Three.js</strong>
+                                <span>Interactive 3D web experiments and browser-based worlds.</span>
+                            </div>
+                            <div class="tool">
+                                <strong>Webflow</strong>
+                                <span>Portfolio layout, visual design, and responsive pages.</span>
+                            </div>
+                            <div class="tool">
+                                <strong>p5.js</strong>
+                                <span>Creative coding, generative visuals, and interactive sketches.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact">
+            <div>
+                <h2>MYR</h2>
+                <p>Crafting worlds. One frame at a time.</p>
+            </div>
+
+            <div>
+                <p class="label">Let's Connect</p>
+                <a href="mailto:hello@myr.studio">hello@myr.studio →</a>
+            </div>
+
+            <div class="socials">
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="LinkedIn">IN</a>
+                <a href="#" aria-label="ArtStation">AS</a>
+            </div>
+        </footer>
+    </body>
+</html>
