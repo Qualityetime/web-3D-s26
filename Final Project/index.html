@@ -311,8 +311,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             }
 
             .img-4 {
-                background-image: radial-gradient(circle at center, rgba(201, 168, 125, 0.34), transparent 45%),
-                    linear-gradient(135deg, #0d0d0d, #592b29 48%, #161412);
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)), url("Images/bus.png");
             }
 
             .project-info {
@@ -548,6 +547,28 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                     display: none;
                 }
             }
+            .project-link,
+            .project-link:link,
+            .project-link:visited,
+            .project-link:hover,
+            .project-link:active {
+                color: inherit;
+                text-decoration: none;
+                display: block;
+            }
+
+            .project-link * {
+                text-decoration: none;
+            }
+
+            .project-link h3 {
+                color: var(--soft-white);
+            }
+
+            .project-link p,
+            .project-link .plus {
+                color: #c94e41;
+            }
         </style>
     </head>
 
@@ -588,10 +609,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 </div>
 
                 <div class="work-grid">
-                    <a
-                        href="mythron.html"
-                        target="_blank"
-                        class="project-link">
+                    <a href="mythron.html" target="_blank" class="project-link">
                         <article class="project-card">
                             <div class="project-image img-1"></div>
                             <div class="project-info">
@@ -622,14 +640,16 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                             </div>
                         </article>
                     </a>
+                    <a href="app.html" class="project-link">
                     <article class="project-card">
                         <div class="project-image img-4"></div>
                         <div class="project-info">
                             <h3>Bus App Redesign</h3>
-                            <p>UI/UX & Motion Design</p>
+                            <p>UI/UX & Layout Design/ Collaborative UX Project</p>
                             <span class="plus">+</span>
                         </div>
                     </article>
+                        </a>
                 </div>
             </section>
 

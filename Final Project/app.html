@@ -1,8 +1,367 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bus App Redesign | Ethan Wansel</title>
+
+        <style>
+            :root {
+                --obsidian-black: #0d0d0d;
+                --night-iron: #161412;
+                --smoked-umber: #27211e;
+                --weathered-stone: #554b40;
+                --aged-gold: #a38762;
+                --parchment-glow: #c9a87d;
+                --ember-red: #592b29;
+                --soft-white: #e7d7b8;
+                --muted-text: #9c8f7a;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: var(--obsidian-black);
+                color: var(--soft-white);
+                font-family: Georgia, "Times New Roman", serif;
+                min-height: 100vh;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background: radial-gradient(circle at 70% 20%, rgba(201, 168, 125, 0.16), transparent 35%),
+                    radial-gradient(circle at 20% 10%, rgba(89, 43, 41, 0.2), transparent 30%),
+                    linear-gradient(180deg, rgba(13, 13, 13, 0.2), rgba(13, 13, 13, 1));
+                pointer-events: none;
+                z-index: -2;
+            }
+
+            .site-border {
+                position: fixed;
+                inset: 18px;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                pointer-events: none;
+                z-index: 100;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 28px 56px;
+                border-bottom: 1px solid rgba(163, 135, 98, 0.2);
+            }
+
+            .logo {
+                color: var(--parchment-glow);
+                text-decoration: none;
+                font-size: 2.1rem;
+                letter-spacing: 0.08em;
+                font-weight: bold;
+            }
+
+            nav {
+                display: flex;
+                gap: 34px;
+            }
+
+            nav a {
+                color: var(--soft-white);
+                text-decoration: none;
+                font-family: Arial, sans-serif;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.25em;
+                transition: color 0.25s ease;
+            }
+
+            nav a:hover {
+                color: #c94e41;
+            }
+
+            .project-hero {
+                padding: 90px 64px 50px;
+                display: grid;
+                grid-template-columns: 0.9fr 1.1fr;
+                gap: 48px;
+                align-items: center;
+                min-height: 78vh;
+            }
+
+            .eyebrow {
+                color: #c94e41;
+                font-family: Arial, sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.45em;
+                font-size: 0.75rem;
+                margin-bottom: 24px;
+            }
+
+            h1 {
+                color: var(--parchment-glow);
+                font-size: clamp(3rem, 6vw, 6.5rem);
+                line-height: 0.95;
+                font-weight: 500;
+                letter-spacing: -0.05em;
+                margin-bottom: 28px;
+            }
+
+            .intro {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                font-size: 1rem;
+                line-height: 1.75;
+                max-width: 560px;
+                margin-bottom: 32px;
+            }
+
+            .button-row {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            .primary-button,
+            .secondary-button {
+                display: inline-block;
+                text-decoration: none;
+                font-family: Arial, sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.22em;
+                font-size: 0.72rem;
+                padding: 15px 24px;
+                transition: all 0.25s ease;
+            }
+
+            .primary-button {
+                color: var(--obsidian-black);
+                background: var(--parchment-glow);
+                border: 1px solid var(--parchment-glow);
+            }
+
+            .primary-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 30px rgba(201, 168, 125, 0.18);
+            }
+
+            .secondary-button {
+                color: var(--parchment-glow);
+                border: 1px solid rgba(201, 168, 125, 0.55);
+            }
+
+            .secondary-button:hover {
+                background: rgba(201, 168, 125, 0.1);
+                transform: translateY(-3px);
+            }
+
+            .project-image {
+                min-height: 520px;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                background:
+                    linear-gradient(to top, rgba(13, 13, 13, 0.82), rgba(13, 13, 13, 0.12)),
+                    url("Images/bus.png") center/cover;
+                box-shadow: inset 0 0 100px rgba(13, 13, 13, 0.9);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .project-image::after {
+                content: "Bus App Resesign";
+                position: absolute;
+                right: -28px;
+                top: 50%;
+                transform: rotate(90deg);
+                color: rgba(201, 168, 125, 0.38);
+                font-family: Arial, sans-serif;
+                font-size: 0.7rem;
+                letter-spacing: 0.45em;
+            }
+
+            .details {
+                padding: 70px 64px 90px;
+                border-top: 1px solid rgba(163, 135, 98, 0.22);
+            }
+
+            .details-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 22px;
+            }
+
+            .detail-card {
+                border: 1px solid rgba(163, 135, 98, 0.28);
+                background: rgba(22, 20, 18, 0.82);
+                padding: 28px;
+                min-height: 220px;
+            }
+
+            .detail-card h2 {
+                color: var(--parchment-glow);
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin-bottom: 16px;
+            }
+
+            .detail-card p,
+            .detail-card li {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                line-height: 1.65;
+                font-size: 0.95rem;
+            }
+
+            ul {
+                padding-left: 18px;
+            }
+
+            footer {
+                padding: 42px 64px;
+                border-top: 1px solid rgba(163, 135, 98, 0.22);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: #0a0a0a;
+            }
+
+            footer p,
+            footer a {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                text-decoration: none;
+            }
+
+            footer a:hover {
+                color: var(--parchment-glow);
+            }
+
+            @media (max-width: 900px) {
+                header {
+                    padding: 24px 28px;
+                }
+
+                nav {
+                    gap: 16px;
+                    flex-wrap: wrap;
+                }
+
+                .project-hero {
+                    grid-template-columns: 1fr;
+                    padding: 70px 28px 40px;
+                }
+
+                .project-image {
+                    min-height: 360px;
+                }
+
+                .details {
+                    padding: 50px 28px 70px;
+                }
+
+                .details-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                footer {
+                    padding: 34px 28px;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 14px;
+                }
+
+                .site-border {
+                    display: none;
+                }
+            }
+        </style>
     </head>
-    <body></body>
+
+    <body>
+        <div class="site-border"></div>
+
+        <header>
+            <a href="index.html" class="logo">Ethan Wansel</a>
+            <nav>
+                <a href="index.html#work">Work</a>
+                <a href="index.html#about">About</a>
+                <a href="resume.pdf" target="_blank">Resume</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="project-hero">
+                <div>
+                    <div class="eyebrow">UI/UX & Layout Design/ Collaborative UX Project</div>
+                    <h1>Bus App Redesign</h1>
+                    <p class="intro">
+                        This bus app redesign was a collaborative UI/UX project created in Figma with two other team
+                        members. The goal was to improve the look, structure, and usability of an existing
+                        transportation app by making the interface feel clearer, more organized, and easier to navigate.
+                        Our redesign focused on improving the user experience for students and riders who need quick
+                        access to routes, arrival times, stops, and trip information.
+                    </p>
+
+                    <div class="button-row">
+                        <a
+                            class="primary-button"
+                            href="https://drive.google.com/drive/folders/1TSAoknM4jNzszOAE3xYyKB13ymnx-BFN?usp=sharing"
+                            target="_blank"
+                            >Watch Walkthrough →</a
+                        >
+                        <a class="secondary-button" href="index.html#work">← Back to Work</a>
+                    </div>
+                </div>
+
+                <div class="project-image"></div>
+            </section>
+
+            <section class="details">
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h2>Project Goal</h2>
+                        <p>
+                            The goal of this project was to take a bus app that felt confusing or outdated and redesign
+                            it into something more readable and user-friendly. We focused on making important
+                            information easier to find, especially route details, bus arrival times, and navigation
+                            options. Since transportation apps are used quickly and often under time pressure, we wanted
+                            the design to feel simple, direct, and practical.
+                        </p>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2>Tools Used</h2>
+                        <ul>
+                            <li>Figma</li>
+                            <li>UI layout design</li>
+                            <li>Wireframing and prototyping</li>
+                            <li>Collaborative design planning</li>
+                            <li>User experience research and feedback</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-card">
+                        <h2>What I Built</h2>
+                        <p>
+                            For this project, I worked with two other team members to plan and redesign the app
+                            interface in Figma. I contributed to the layout, visual direction, screen organization, and
+                            overall user flow. My role involved helping decide how information should be arranged on the
+                            screen so the app would feel easier to use. I also helped refine the visual style so the
+                            redesign felt cleaner, more modern, and more consistent across the different screens.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ethan Wansel Portfolio</p>
+            <a href="index.html">Return Home →</a>
+        </footer>
+    </body>
 </html>
