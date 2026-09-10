@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Selected animation, creative coding, 3D, and design work by Ethan Wansel." />
+        <title>All Work | Ethan Wansel</title>
+
+        <style>
+            :root {
+                --obsidian-black: #0d0d0d;
+                --night-iron: #161412;
+                --smoked-umber: #27211e;
+                --aged-gold: #a38762;
+                --parchment-glow: #c9a87d;
+                --soft-white: #e7d7b8;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: var(--obsidian-black);
+                color: var(--soft-white);
+                font-family: Georgia, "Times New Roman", serif;
+                min-height: 100vh;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background:
+                    radial-gradient(circle at 72% 12%, rgba(201, 168, 125, 0.15), transparent 32%),
+                    radial-gradient(circle at 18% 22%, rgba(89, 43, 41, 0.18), transparent 30%),
+                    linear-gradient(180deg, rgba(13, 13, 13, 0.2), rgba(13, 13, 13, 1));
+                pointer-events: none;
+                z-index: -2;
+            }
+
+            .site-border {
+                position: fixed;
+                inset: 18px;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                pointer-events: none;
+                z-index: 100;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 28px 56px;
+                border-bottom: 1px solid rgba(163, 135, 98, 0.2);
+            }
+
+            .logo {
+                color: var(--parchment-glow);
+                text-decoration: none;
+                font-size: 2.1rem;
+                letter-spacing: 0.08em;
+                font-weight: bold;
+            }
+
+            nav {
+                display: flex;
+                gap: 34px;
+            }
+
+            nav a {
+                color: var(--soft-white);
+                text-decoration: none;
+                font-family: Arial, sans-serif;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.25em;
+                transition: color 0.25s ease;
+            }
+
+            nav a:hover,
+            nav a.active {
+                color: #c94e41;
+            }
+
+            main {
+                padding: 88px 64px 110px;
+            }
+
+            .page-heading {
+                max-width: 760px;
+                margin-bottom: 52px;
+            }
+
+            .eyebrow {
+                color: #c94e41;
+                font-family: Arial, sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.45em;
+                font-size: 0.75rem;
+                margin-bottom: 22px;
+            }
+
+            h1 {
+                color: var(--parchment-glow);
+                font-size: clamp(3.6rem, 8vw, 7.8rem);
+                line-height: 0.92;
+                font-weight: 500;
+                letter-spacing: -0.05em;
+                margin-bottom: 24px;
+            }
+
+            .page-heading p {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                font-size: 1rem;
+                line-height: 1.75;
+                max-width: 600px;
+            }
+
+            .work-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            .project-link {
+                color: inherit;
+                text-decoration: none;
+                display: block;
+            }
+
+            .project-card {
+                height: 100%;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                background: rgba(22, 20, 18, 0.82);
+                transition:
+                    transform 0.28s ease,
+                    border-color 0.28s ease,
+                    background 0.28s ease;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .project-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(201, 168, 125, 0.8);
+                background: rgba(39, 33, 30, 0.96);
+            }
+
+            .project-image {
+                height: 260px;
+                background-color: #211d1a;
+                background-position: center;
+                background-size: cover;
+                filter: grayscale(25%) contrast(1.1) brightness(0.8);
+                transition:
+                    transform 0.4s ease,
+                    filter 0.4s ease;
+            }
+
+            .project-card:hover .project-image {
+                transform: scale(1.06);
+                filter: grayscale(0%) contrast(1.08) brightness(0.95);
+            }
+
+            .img-1 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.15), rgba(13, 13, 13, 0.55)),
+                    url("Images/Mythron.png");
+            }
+
+            .img-2 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)),
+                    url("Images/Cabinet.png");
+            }
+
+            .img-3 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)),
+                    url("Images/Forest.png");
+            }
+
+            .img-4 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)),
+                    url("Images/bus.png");
+            }
+
+            /* Add Images/sound-collaboration.png later; no HTML or CSS change is needed. */
+            .img-5 {
+                background-image:
+                    linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.58)),
+                    url("Images/sound-collaboration.png"),
+                    radial-gradient(circle at 65% 32%, #c94e41 0 8%, transparent 25%),
+                    linear-gradient(145deg, #4e185f, #0d0d0d 65%);
+            }
+
+            .project-info {
+                padding: 22px 22px 26px;
+                position: relative;
+                min-height: 112px;
+            }
+
+            .project-info h2 {
+                color: var(--soft-white);
+                font-size: 1.45rem;
+                line-height: 1.15;
+                margin-bottom: 9px;
+                padding-right: 28px;
+                font-weight: 500;
+            }
+
+            .project-info p {
+                color: #c94e41;
+                font-family: Arial, sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                font-size: 0.65rem;
+                line-height: 1.5;
+                padding-right: 28px;
+            }
+
+            .plus {
+                position: absolute;
+                right: 20px;
+                bottom: 18px;
+                color: #c94e41;
+                font-size: 1.4rem;
+            }
+
+            footer {
+                padding: 42px 64px;
+                border-top: 1px solid rgba(163, 135, 98, 0.22);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: #0a0a0a;
+            }
+
+            footer p,
+            footer a {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                text-decoration: none;
+            }
+
+            footer a:hover {
+                color: var(--parchment-glow);
+            }
+
+            @media (max-width: 1050px) {
+                main {
+                    padding: 70px 28px 90px;
+                }
+
+                .work-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+            @media (max-width: 680px) {
+                header,
+                footer {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    gap: 18px;
+                    padding: 24px 28px;
+                }
+
+                nav {
+                    gap: 16px;
+                    flex-wrap: wrap;
+                }
+
+                .work-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .project-image {
+                    height: 230px;
+                }
+
+                .site-border {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="site-border"></div>
+
+        <header>
+            <a href="index.html" class="logo">Ethan Wansel</a>
+            <nav>
+                <a href="all-work.html" class="active">Work</a>
+                <a href="index.html#about">About</a>
+                <a href="Resume.pdf" target="_blank">Resume</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="page-heading">
+                <div class="eyebrow">Selected Projects</div>
+                <h1>All Work</h1>
+                <p>
+                    Animation, creative coding, immersive environments, and interface design collected in one place.
+                </p>
+            </div>
+
+            <section class="work-grid" aria-label="Portfolio projects">
+                <a href="mythron.html" class="project-link">
+                    <article class="project-card">
+                        <div class="project-image img-1" role="img" aria-label="Mythron project preview"></div>
+                        <div class="project-info">
+                            <h2>Mythron</h2>
+                            <p>Cinematic Animation</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="cabinet.html" class="project-link">
+                    <article class="project-card">
+                        <div
+                            class="project-image img-2"
+                            role="img"
+                            aria-label="Cabinet of Curiosities project preview"></div>
+                        <div class="project-info">
+                            <h2>Cabinet of Curiosities</h2>
+                            <p>Interactive 3D Web</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="vr-world.html" class="project-link">
+                    <article class="project-card">
+                        <div class="project-image img-3" role="img" aria-label="VR Environment project preview"></div>
+                        <div class="project-info">
+                            <h2>VR Environment</h2>
+                            <p>Immersive Design</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="app.html" class="project-link">
+                    <article class="project-card">
+                        <div class="project-image img-4" role="img" aria-label="Bus App Redesign project preview"></div>
+                        <div class="project-info">
+                            <h2>Bus App Redesign</h2>
+                            <p>Collaborative UI/UX</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+                </a>
+
+                <a href="sound-collaboration.html" class="project-link">
+                    <article class="project-card">
+                        <div
+                            class="project-image img-5"
+                            role="img"
+                            aria-label="Synthwave Sound Collaboration project preview"></div>
+                        <div class="project-info">
+                            <h2>Synthwave Sound Collaboration</h2>
+                            <p>Creative Coding & Audio</p>
+                            <span class="plus">+</span>
+                        </div>
+                    </article>
+                </a>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ethan Wansel Portfolio</p>
+            <a href="index.html">Return Home →</a>
+        </footer>
+    </body>
+</html>
