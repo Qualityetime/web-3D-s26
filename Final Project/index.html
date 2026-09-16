@@ -11,7 +11,10 @@ https://www.awwwards.com/sites/trajectory-web-design-1
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Ethan Wansel Portfolio</title>
+        <meta
+            name="description"
+            content="Ethan Wansel is a Virginia Tech Creative Technologies graduate pursuing analyst and technology roles in government and defense. Explore work in interface design, interactive systems, and visualization." />
+        <title>Ethan Wansel | Analysis, Technology & Design</title>
 
         <style>
             :root {
@@ -108,7 +111,8 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             .hero {
                 min-height: 100vh;
                 display: grid;
-                grid-template-columns: 0.85fr 1.15fr;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 52px;
                 align-items: center;
                 padding: 120px 64px 70px;
                 position: relative;
@@ -118,21 +122,22 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             .hero-text {
                 position: relative;
                 z-index: 2;
-                max-width: 620px;
+                max-width: 740px;
             }
 
             .eyebrow {
                 color: #b94b3f;
                 font-family: Arial, sans-serif;
                 text-transform: uppercase;
-                letter-spacing: 0.5em;
+                letter-spacing: 0.32em;
                 font-size: 0.75rem;
-                margin-bottom: 28px;
+                line-height: 1.6;
+                margin-bottom: 24px;
             }
 
             h1 {
-                font-size: clamp(3.4rem, 7vw, 7.4rem);
-                line-height: 0.92;
+                font-size: clamp(3.1rem, 5.5vw, 6.5rem);
+                line-height: 0.98;
                 color: var(--parchment-glow);
                 font-weight: 500;
                 letter-spacing: -0.05em;
@@ -142,15 +147,13 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             h1 span {
                 color: #c94e41;
                 font-style: italic;
-                font-size: 0.55em;
-                letter-spacing: -0.03em;
             }
 
             .hero-text p {
                 color: #b7aa92;
                 font-size: 1.05rem;
                 line-height: 1.75;
-                max-width: 430px;
+                max-width: 620px;
                 margin-bottom: 32px;
                 font-family: Arial, sans-serif;
             }
@@ -159,9 +162,11 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 display: flex;
                 align-items: center;
                 gap: 16px;
+                flex-wrap: wrap;
             }
 
-            .primary-button {
+            .primary-button,
+            .secondary-button {
                 color: var(--parchment-glow);
                 border: 1px solid rgba(201, 168, 125, 0.65);
                 padding: 16px 28px;
@@ -174,11 +179,16 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 background: rgba(13, 13, 13, 0.45);
             }
 
-            .primary-button:hover {
+            .primary-button:hover,
+            .secondary-button:hover {
                 background: var(--parchment-glow);
                 color: var(--obsidian-black);
                 transform: translateY(-3px);
                 box-shadow: 0 12px 30px rgba(201, 168, 125, 0.16);
+            }
+
+            .secondary-button {
+                border-color: rgba(201, 168, 125, 0.35);
             }
 
             .hero-art {
@@ -188,45 +198,44 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 position: relative;
                 overflow: hidden;
                 background:
-                    linear-gradient(90deg, rgba(13, 13, 13, 0.98), rgba(13, 13, 13, 0.42), rgba(13, 13, 13, 0.15)),
-                    url("Images/hero.png") center/cover;
-                box-shadow: inset 0 0 140px rgba(13, 13, 13, 0.95);
+                    linear-gradient(to top, rgba(13, 13, 13, 0.95), transparent 44%),
+                    url("Images/me.jpg") center 32%/cover;
+                border: 1px solid rgba(163, 135, 98, 0.35);
+                box-shadow: inset 0 0 100px rgba(13, 13, 13, 0.28);
             }
 
             .hero-art::before {
                 content: "";
                 position: absolute;
                 inset: 0;
-                background: radial-gradient(circle at 65% 35%, rgba(201, 168, 125, 0.45), transparent 16%),
-                    linear-gradient(to top, rgba(13, 13, 13, 0.95), transparent 45%);
-                mix-blend-mode: screen;
-                opacity: 0.7;
+                border: 1px solid rgba(201, 168, 125, 0.2);
+                margin: 12px;
+                pointer-events: none;
             }
 
-            .hero-art::after {
-                content: "MYTHRON";
+            .hero-caption {
                 position: absolute;
-                right: -18px;
-                top: 50%;
-                transform: rotate(90deg);
-                color: rgba(201, 168, 125, 0.35);
+                bottom: 28px;
+                left: 28px;
+                right: 28px;
+                color: var(--soft-white);
                 font-family: Arial, sans-serif;
-                letter-spacing: 0.5em;
-                font-size: 0.7rem;
+                line-height: 1.5;
             }
 
-            .figure-card {
-                position: absolute;
-                right: 10%;
-                bottom: 9%;
-                width: 260px;
-                height: 380px;
-                border: 1px solid rgba(201, 168, 125, 0.25);
-                background: linear-gradient(180deg, rgba(13, 13, 13, 0), rgba(13, 13, 13, 0.6)),
-                    radial-gradient(circle at center, rgba(201, 168, 125, 0.16), transparent 60%);
-                clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-                opacity: 0.92;
-                filter: blur(0.2px);
+            .hero-caption strong {
+                display: block;
+                color: var(--parchment-glow);
+                font-size: 0.72rem;
+                font-weight: normal;
+                letter-spacing: 0.26em;
+                text-transform: uppercase;
+            }
+
+            .hero-caption span {
+                display: block;
+                font-size: 0.92rem;
+                margin-top: 5px;
             }
 
             .section {
@@ -248,6 +257,15 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 font-family: Arial, sans-serif;
             }
 
+            .section-intro {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                font-size: 1rem;
+                line-height: 1.7;
+                max-width: 660px;
+                margin: -12px 0 32px;
+            }
+
             .view-all {
                 color: #c94e41;
                 text-decoration: none;
@@ -259,11 +277,12 @@ https://www.awwwards.com/sites/trajectory-web-design-1
 
             .work-grid {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
             }
 
             .project-card {
+                height: 100%;
                 border: 1px solid rgba(163, 135, 98, 0.35);
                 background: rgba(22, 20, 18, 0.82);
                 transition:
@@ -281,7 +300,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             }
 
             .project-image {
-                height: 210px;
+                height: 240px;
                 background-size: cover;
                 background-position: center;
                 filter: grayscale(25%) contrast(1.1) brightness(0.8);
@@ -293,11 +312,6 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             .project-card:hover .project-image {
                 transform: scale(1.06);
                 filter: grayscale(0%) contrast(1.08) brightness(0.95);
-            }
-
-            .img-1 {
-                background-image: linear-gradient(rgba(13, 13, 13, 0.15), rgba(13, 13, 13, 0.55)),
-                    url("Images/Mythron.png");
             }
 
             .img-2 {
@@ -314,14 +328,20 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)), url("Images/bus.png");
             }
 
+            .img-5 {
+                background-image: linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.55)),
+                    url("Images/Synth.png");
+            }
+
             .project-info {
-                padding: 20px 20px 24px;
+                padding: 22px 24px 26px;
                 position: relative;
+                min-height: 172px;
             }
 
             .project-info h3 {
                 color: var(--soft-white);
-                font-size: 1.35rem;
+                font-size: 1.55rem;
                 margin-bottom: 8px;
                 font-weight: 500;
             }
@@ -331,7 +351,19 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 font-family: Arial, sans-serif;
                 text-transform: uppercase;
                 letter-spacing: 0.18em;
-                font-size: 0.65rem;
+                font-size: 0.72rem;
+                line-height: 1.5;
+                padding-right: 34px;
+            }
+
+            .project-info .project-proof {
+                color: #b7aa92;
+                font-family: Arial, sans-serif;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                letter-spacing: normal;
+                text-transform: none;
+                margin-top: 14px;
             }
 
             .plus {
@@ -344,18 +376,9 @@ https://www.awwwards.com/sites/trajectory-web-design-1
 
             .about-layout {
                 display: grid;
-                grid-template-columns: 330px 1fr 1.2fr;
-                gap: 34px;
-                align-items: stretch;
-            }
-
-            .portrait {
-                min-height: 360px;
-                border: 1px solid rgba(163, 135, 98, 0.35);
-                background:
-                    linear-gradient(to top, rgba(13, 13, 13, 0.65), transparent),
-                    url("Images/me.jpg") center/cover;
-                filter: grayscale(65%) brightness(0.7) sepia(20%);
+                grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+                gap: 72px;
+                align-items: start;
             }
 
             .about-text {
@@ -384,8 +407,12 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 font-family: Arial, sans-serif;
                 color: #b7aa92;
                 line-height: 1.7;
-                font-size: 0.95rem;
-                max-width: 460px;
+                font-size: 1rem;
+                max-width: 600px;
+            }
+
+            .about-text p + p {
+                margin-top: 16px;
             }
 
             .tools {
@@ -405,7 +432,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             .tool {
                 border: 1px solid rgba(163, 135, 98, 0.25);
                 padding: 22px 18px;
-                min-height: 110px;
+                min-height: 145px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -427,9 +454,9 @@ https://www.awwwards.com/sites/trajectory-web-design-1
 
             .tool span {
                 font-family: Arial, sans-serif;
-                color: var(--muted-text);
-                font-size: 0.82rem;
-                line-height: 1.4;
+                color: #b7aa92;
+                font-size: 0.9rem;
+                line-height: 1.55;
             }
 
             footer {
@@ -463,13 +490,15 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             }
 
             .socials a {
-                width: 44px;
+                min-width: 84px;
                 height: 44px;
                 border: 1px solid rgba(163, 135, 98, 0.45);
                 display: grid;
                 place-items: center;
                 color: var(--parchment-glow);
                 transition: all 0.25s ease;
+                padding: 0 14px;
+                font-size: 0.8rem;
             }
 
             .socials a:hover {
@@ -489,6 +518,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
 
                 .hero {
                     grid-template-columns: 1fr;
+                    gap: 0;
                     padding: 120px 28px 50px;
                 }
 
@@ -496,6 +526,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                     margin-top: 40px;
                     height: 52vh;
                     min-height: 380px;
+                    max-width: 700px;
                 }
 
                 .section {
@@ -508,6 +539,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
 
                 .about-layout {
                     grid-template-columns: 1fr;
+                    gap: 34px;
                 }
 
                 footer {
@@ -535,6 +567,14 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                 .work-grid,
                 .tool-grid {
                     grid-template-columns: 1fr;
+                }
+
+                .hero {
+                    padding-top: 180px;
+                }
+
+                .hero-art {
+                    height: 420px;
                 }
 
                 .section-header {
@@ -576,11 +616,11 @@ https://www.awwwards.com/sites/trajectory-web-design-1
         <div class="site-border"></div>
 
         <header>
-            <a href="#" class="logo">Ethan Wansel</a>
+            <a href="#top" class="logo">Ethan Wansel</a>
             <nav>
                 <a href="#work" class="active">Work</a>
                 <a href="#about">About</a>
-                <a href="Resume.pdf" target="_blank">Resume</a>
+                <a href="https://www.linkedin.com/in/ethan-wansel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="#contact">Contact</a>
             </nav>
         </header>
@@ -588,33 +628,44 @@ https://www.awwwards.com/sites/trajectory-web-design-1
         <main>
             <section class="hero" id="top">
                 <div class="hero-text">
-                    <div class="eyebrow">Portfolio</div>
-                    <h1>Animator,<br />Illustrator,<br /><span>and</span> Creative<br />Technologist.</h1>
+                    <div class="eyebrow">Ethan Wansel / Virginia Tech Graduate</div>
+                    <h1>Understand the problem.<br /><span>Make the next step clear.</span></h1>
                     <p>
-                        I build immersive worlds through motion, design, and storytelling. This portfolio collects my
-                        animation, creative coding, 3D, and visual design work into one intentional space.
+                        I’m a Creative Technologies graduate pursuing analyst and technology roles supporting government
+                        and defense work. My projects combine information design, interactive code, and visualization
+                        to organize complex ideas and make them useful to others.
                     </p>
                     <div class="button-row">
-                        <a class="primary-button" href="#work">✦ View Work →</a>
+                        <a class="primary-button" href="#work">Explore Selected Work →</a>
+                        <a class="secondary-button" href="mailto:ethanwansel@yahoo.com">Get in Touch →</a>
                     </div>
                 </div>
 
-                <div class="hero-art"></div>
+                <div class="hero-art">
+                    <div class="hero-caption">
+                        <strong>Virginia Tech · 2026</strong>
+                        <span>B.F.A. Creative Technologies</span>
+                    </div>
+                </div>
             </section>
 
             <section class="section" id="work">
                 <div class="section-header">
-                    <h2 class="section-title">✦ Featured Work</h2>
+                    <h2 class="section-title">✦ Selected Work</h2>
                     <a class="view-all" href="all-work.html">View All Work →</a>
                 </div>
+                <p class="section-intro">
+                    Projects that show how I structure information, build working prototypes, and collaborate across disciplines.
+                </p>
 
                 <div class="work-grid">
-                    <a href="mythron.html" target="_blank" class="project-link">
+                    <a href="app.html" class="project-link">
                         <article class="project-card">
-                            <div class="project-image img-1"></div>
+                            <div class="project-image img-4"></div>
                             <div class="project-info">
-                                <h3>Mythron</h3>
-                                <p>Cinematic Animation</p>
+                                <h3>Bus App Redesign</h3>
+                                <p>Information Design · Collaboration</p>
+                                <p class="project-proof">Worked with two teammates to make routes, stops, and arrival information easier to navigate.</p>
                                 <span class="plus">+</span>
                             </div>
                         </article>
@@ -625,7 +676,19 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                             <div class="project-image img-2"></div>
                             <div class="project-info">
                                 <h3>Cabinet of Curiosities</h3>
-                                <p>Interactive 3D Web Project</p>
+                                <p>Web Development · Interaction Design</p>
+                                <p class="project-proof">Built a browser-based 3D experience with spatial navigation and clickable content.</p>
+                                <span class="plus">+</span>
+                            </div>
+                        </article>
+                    </a>
+                    <a href="sound-collaboration.html" class="project-link">
+                        <article class="project-card">
+                            <div class="project-image img-5"></div>
+                            <div class="project-info">
+                                <h3>Synthwave Sound Collaboration</h3>
+                                <p>Creative Coding · Interactive Systems</p>
+                                <p class="project-proof">Connected four mood choices to coordinated visual states and audio loops in p5.js.</p>
                                 <span class="plus">+</span>
                             </div>
                         </article>
@@ -634,63 +697,52 @@ https://www.awwwards.com/sites/trajectory-web-design-1
                         <article class="project-card">
                             <div class="project-image img-3"></div>
                             <div class="project-info">
-                                <h3>The Forest</h3>
-                                <p>Immersive vr environment</p>
+                                <h3>VR Environment</h3>
+                                <p>Visualization · Scenario Building</p>
+                                <p class="project-proof">Designed an immersive scene and tested navigation, lighting, and scale in VR.</p>
                                 <span class="plus">+</span>
                             </div>
                         </article>
                     </a>
-                    <a href="app.html" class="project-link">
-                    <article class="project-card">
-                        <div class="project-image img-4"></div>
-                        <div class="project-info">
-                            <h3>Bus App Redesign</h3>
-                            <p>Collaborative UI/UX design Project</p>
-                            <span class="plus">+</span>
-                        </div>
-                    </article>
-                        </a>
                 </div>
             </section>
 
             <section class="section" id="about">
                 <div class="about-layout">
-                    <div class="portrait"></div>
-
                     <div class="about-text">
-                        <div class="label">About</div>
-                        <h2>Designer at heart.<br />Storyteller by nature.</h2>
+                        <div class="label">Background &amp; Approach</div>
+                        <h2>Creative training.<br />Practical focus.</h2>
                         <p>
-                            I am a multidisciplinary creative focused on animation, illustration, interactive design,
-                            and worldbuilding. My work combines cinematic visuals, strong character design, and
-                            technical tools to create projects that feel personal, immersive, and memorable.
+                            I graduated from Virginia Tech in 2026 with a B.F.A. in Creative Technologies. My work
+                            has required me to define a problem, make sense of unfamiliar tools and information,
+                            and turn an idea into something another person can use or explore.
+                        </p>
+                        <p>
+                            In the Virginia Tech Corps of Cadets, I served as a fire team leader, squad leader,
+                            and New Cadet Week staff member. Those responsibilities taught me to plan with a team,
+                            communicate clearly, and follow through under time constraints. I’m looking to bring
+                            that approach to analyst and technical work in the government sector.
                         </p>
                     </div>
 
                     <div class="tools">
-                        <div class="label">Tools & Technologies</div>
+                        <div class="label">What I Bring</div>
                         <div class="tool-grid">
                             <div class="tool">
-                                <strong>Clip Studio Paint</strong>
-                                <span>2D animation, illustration, line work, and concept art.</span>
+                                <strong>Information Design</strong>
+                                <span>Figma, wireframes, user flows, and organizing details for clear decisions.</span>
                             </div>
                             <div class="tool">
-                                <strong>Three.js</strong>
-                                <span>Interactive 3D web experiments and browser-based worlds.</span>
+                                <strong>Technical Prototyping</strong>
+                                <span>HTML, CSS, JavaScript, Three.js, and p5.js for interactive web projects.</span>
                             </div>
                             <div class="tool">
-                                <strong>Maya</strong>
-                                <span
-                                    >3D modeling, low-poly assets, UV work, scene building, and digital
-                                    production.</span
-                                >
+                                <strong>Visualization</strong>
+                                <span>Unreal Engine, Revit, Twinmotion, and VR environments for exploring scenarios.</span>
                             </div>
                             <div class="tool">
-                                <strong>Unreal Engine</strong>
-                                <span
-                                    >VR worldbuilding, immersive environments, lighting, and interactive scene
-                                    design.</span
-                                >
+                                <strong>Team Leadership</strong>
+                                <span>Cadet leadership and collaborative projects with shared goals and deadlines.</span>
                             </div>
                         </div>
                     </div>
@@ -701,7 +753,7 @@ https://www.awwwards.com/sites/trajectory-web-design-1
         <footer id="contact">
             <div>
                 <h2>Ethan Wansel</h2>
-                <p>Crafting worlds. One frame at a time.</p>
+                <p>Open to analyst and technology roles supporting government and defense work.</p>
             </div>
 
             <div>
@@ -710,9 +762,8 @@ https://www.awwwards.com/sites/trajectory-web-design-1
             </div>
 
             <div class="socials">
-                <a href="#" aria-label="Instagram">IG</a>
-                <a href="#" aria-label="LinkedIn">IN</a>
-                <a href="#" aria-label="ArtStation">AS</a>
+                <a href="https://www.linkedin.com/in/ethan-wansel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/Qualityetime" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
         </footer>
     </body>
