@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#151e1b" />
+    <meta name="description" content="A two-player prehistoric multiplayer movement prototype." />
+    <title>Primal Co-op · v0.1</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <canvas id="world" aria-label="Multiplayer forest game"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <header class="masthead">
+      <svg class="brand-mark" aria-hidden="true" viewBox="0 0 36 48"><path d="M18 43V6M5 13l13 13 13-13" fill="none" stroke="currentColor" stroke-width="2.5" /></svg>
+      <div><strong>PRIMAL CO-OP</strong><span>THE FIRST CLEARING</span></div>
+      <span class="version">v0.1</span>
+    </header>
+    <section id="lobby" class="panel lobby" aria-labelledby="lobby-title">
+      <span class="eyebrow">TWO HUNTERS. ONE WORLD.</span>
+      <h1 id="lobby-title">Start with<br />the bones.</h1>
+      <p class="intro">Meet in the clearing. Find your footing.<br />The wilderness starts here.</p>
+      <form id="join-form">
+        <label for="name">HUNTER NAME</label>
+        <input id="name" name="name" maxlength="20" placeholder="Hunter" value="Hunter" autocomplete="nickname" required />
+        <label for="room">ROOM CODE</label>
+        <input id="room" name="room" minlength="3" maxlength="12" pattern="(?:[A-Za-z0-9]|-){3,12}" value="BONES" autocomplete="off" required />
+        <p class="field-note">Use the same code in both windows.</p>
+        <button id="join-button" type="submit">ENTER THE CLEARING <span aria-hidden="true">↗</span></button>
+        <p id="join-error" class="error" role="alert" hidden></p>
+      </form>
+      <div class="control-list"><span><kbd>W A S D</kbd> Move</span><span><kbd>SHIFT</kbd> Sprint</span><span><kbd>SPACE</kbd> Jump</span><span><kbd>MOUSE</kbd> Look</span></div>
+    </section>
+    <section id="pause" class="panel pause" hidden aria-labelledby="pause-title">
+      <span class="eyebrow">TAKE A BREATH</span>
+      <h2 id="pause-title">Back to the clearing.</h2>
+      <p id="pause-message">Your hunter is standing still. Click below to keep exploring.</p>
+      <button id="resume-button">CONTINUE <span aria-hidden="true">↗</span></button>
+      <button id="leave-button" class="secondary">LEAVE ROOM</button>
+      <p class="field-note">ESC releases your mouse.</p>
+    </section>
+    <aside id="hud" hidden>
+      <div class="session-strip"><span class="status-dot"></span><span id="connection-status">CONNECTED</span><span class="separator">/</span><span>ROOM <b id="room-label">BONES</b></span><button id="copy-link" title="Copy room link">COPY LINK</button></div>
+      <div class="player-panel"><span class="eyebrow">IN THE CLEARING <b id="player-count">1 / 2</b></span><ul id="roster"></ul><p id="waiting-note">Waiting for your second hunter.</p></div>
+      <div class="bottom-strip"><span><kbd>WASD</kbd> MOVE <kbd>SHIFT</kbd> SPRINT <kbd>SPACE</kbd> JUMP <kbd>ESC</kbd> PAUSE</span><span id="metrics">— ms</span></div>
+      <div id="crosshair" aria-hidden="true"></div>
+      <div id="movement-label">ON FOOT</div>
+      <div id="toast" role="status" hidden></div>
+    </aside>
+    <footer id="lobby-footer"><span>MULTIPLAYER MOVEMENT PROTOTYPE</span><span>01 / THE FOUNDATION</span></footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+:root { color-scheme: dark; font-family: 'Segoe UI', Arial, sans-serif; color: #ece9dd; background: #1b2821; --muted: #a0aaa0; --accent: #d3b48a; }
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden; }
+[hidden] { display: none !important; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 2px solid #b9dbce; outline-offset: 4px; }
+#world { position: fixed; inset: 0; display: block; width: 100vw; height: 100vh; }
+.vignette { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 65% 40%, transparent 35%, #08120d85 100%); }
+.masthead { position: fixed; left: 40px; top: 30px; display: flex; gap: 13px; align-items: center; z-index: 2; text-shadow: 0 2px 12px #0008; }
+.brand-mark { color: var(--accent); width: 28px; height: 40px; }
+.masthead strong { display: block; font-size: 13px; letter-spacing: 3px; font-weight: 650; }
+.masthead div > span { display: block; margin-top: 5px; font-size: 9px; letter-spacing: 2px; color: #a9b9aa; }
+.version { align-self: flex-start; margin-top: 8px; color: #b7c2b5; font: 10px Consolas, monospace; border: 1px solid #ffffff25; padding: 3px 5px; }
+.panel { position: fixed; width: 400px; padding: 32px; border: 1px solid #bec6b427; background: linear-gradient(130deg, #19251ded, #15231edc); box-shadow: 0 20px 70px #07100a55; backdrop-filter: blur(12px); }
+.lobby { left: 40px; top: 50%; transform: translateY(-45%); }
+.eyebrow { font-size: 9px; letter-spacing: 2.2px; color: var(--accent); font-weight: 650; }
+h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 58px; line-height: 1.02; font-weight: 400; letter-spacing: -2px; margin: 20px 0; }
+.intro { color: #aebbac; font-size: 13px; line-height: 1.7; margin: 0 0 25px; }
+label { display: block; font-size: 9px; letter-spacing: 1.8px; color: #c8cbbd; margin: 18px 0 9px; }
+input { display: block; width: 100%; padding: 12px 13px; color: #eeeee2; background: #07130d66; border: 1px solid #bec6b433; border-radius: 0; font-size: 14px; }
+#room { text-transform: uppercase; letter-spacing: 3px; font-family: Consolas, monospace; }
+.field-note { font-size: 10px; color: var(--muted); margin: 9px 0 18px; line-height: 1.5; }
+.panel button { width: 100%; border: 0; padding: 15px 14px; font-size: 10px; font-weight: 750; letter-spacing: 1.2px; text-align: left; background: var(--accent); color: #1f271e; }
+.panel button:hover { background: #e1c39b; }
+.panel button:disabled { cursor: wait; opacity: .7; }
+.panel button > span { float: right; font-size: 17px; line-height: 12px; }
+.panel button.secondary { background: transparent; border: 1px solid #ffffff24; color: #aab6a8; margin-top: 12px; }
+.error { margin: 14px 0 0; color: #efb5a0; font-size: 12px; line-height: 1.5; }
+.control-list { border-top: 1px solid #ffffff15; margin-top: 26px; padding-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 13px; color: #aeb7ac; font-size: 10px; }
+kbd { font: 9px Consolas, monospace; color: #d8dccf; border: 1px solid #bac5ad35; background: #0b180f50; padding: 4px 6px; margin-right: 6px; white-space: nowrap; }
+.pause { left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 5; }
+.pause h2 { font: 32px/1.15 Georgia, serif; font-weight: normal; margin: 18px 0; }
+.pause p { font-size: 12px; color: #aebbac; line-height: 1.6; }
+.session-strip { position: fixed; top: 38px; right: 34px; display: flex; align-items: center; gap: 12px; font: 10px Consolas, monospace; letter-spacing: 1px; background: #0c1c146b; border: 1px solid #ffffff1b; padding: 12px 14px; }
+.status-dot { width: 5px; height: 5px; background: #94cdb6; border-radius: 50%; box-shadow: 0 0 12px #94cdb688; }
+.session-strip.offline .status-dot { background: #e7a181; }
+.separator { color: #ffffff35; }
+#copy-link { color: #c6cdbb; background: none; border: 0; border-left: 1px solid #ffffff24; font: inherit; font-size: 9px; padding-left: 12px; }
+.player-panel { position: fixed; top: 112px; right: 34px; width: 228px; padding: 18px; background: #112017a3; border: 1px solid #ffffff1b; }
+.player-panel .eyebrow { font-size: 8px; letter-spacing: 1.6px; }
+#player-count { float: right; font-weight: normal; }
+#roster { list-style: none; margin: 15px 0 0; padding: 0; font-size: 12px; }
+#roster li { padding: 7px 0; display: flex; align-items: center; gap: 9px; }
+.player-dot { width: 6px; height: 6px; border-radius: 50%; }
+.you-tag { margin-left: auto; color: #9ba996; font: 8px Consolas, monospace; }
+#waiting-note { color: #b7c1ae; margin: 15px 0 0; font-size: 10px; line-height: 1.4; }
+.bottom-strip { position: fixed; bottom: 28px; left: 36px; right: 36px; display: flex; justify-content: space-between; align-items: center; font: 9px Consolas, monospace; letter-spacing: .6px; color: #ccd2c0; text-shadow: 0 1px 4px #000; }
+.bottom-strip kbd { margin-left: 14px; }
+.bottom-strip kbd:first-child { margin-left: 0; }
+#crosshair { position: fixed; left: 50%; top: 50%; width: 4px; height: 4px; border: 1px solid #f1eddeba; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 6px #0008; pointer-events: none; }
+#movement-label { position: fixed; bottom: 65px; left: 50%; transform: translateX(-50%); color: #d5dfc885; font: 8px Consolas, monospace; letter-spacing: 3px; pointer-events: none; }
+#toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #102319e8; border: 1px solid #ffffff25; padding: 12px 20px; font-size: 12px; }
+#lobby-footer { position: fixed; bottom: 28px; left: 40px; right: 40px; display: flex; justify-content: space-between; color: #c8d5bd99; font: 9px Consolas, monospace; letter-spacing: 1.6px; }
+@media (max-height: 800px) { .lobby { padding: 24px 28px; width: 365px; } h1 { font-size: 48px; margin: 16px 0; } .intro { margin-bottom: 18px; } .control-list { margin-top: 20px; padding-top: 16px; } }
+@media (max-width: 700px) { .masthead { left: 20px; top: 18px; } .lobby { left: 20px; width: min(365px, calc(100vw - 40px)); } .pause { width: calc(100vw - 40px); } .session-strip { top: 100px; left: 20px; right: auto; font-size: 8px; } .player-panel { top: 160px; right: 20px; } .bottom-strip { left: 20px; right: 20px; } .bottom-strip > span:first-child { display: none; } #lobby-footer { left: 20px; right: 20px; font-size: 8px; } #lobby-footer > span:last-child { display: none; } }
