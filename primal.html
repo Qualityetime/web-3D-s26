@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Play Ethan Wansel’s single-player Project Primal demo and explore the simulation behind it.">
+    <title>Project Primal | Ethan Wansel</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #0d0d0d; color: #e7d7b8; font-family: Arial, sans-serif; line-height: 1.65; }
+        header, main, footer { width: min(1160px, calc(100% - 48px)); margin: auto; }
+        header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding: 24px 0; border-bottom: 1px solid #554b40; }
+        a { color: #e2bf94; text-underline-offset: .25em; }
+        a:focus-visible { outline: 2px solid #e2bf94; outline-offset: 5px; }
+        .logo, h1, h2 { font-family: Georgia, serif; }
+        .logo { font-size: 1.55rem; text-decoration: none; }
+        .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(24px, 5vw, 64px); align-items: center; padding: clamp(36px, 7vw, 92px) 0; }
+        .eyebrow { color: #d9a875; letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; }
+        h1 { margin: 0; color: #e2bf94; font-size: clamp(3rem, 7vw, 5.75rem); line-height: 1; font-weight: 500; }
+        h2 { color: #e2bf94; font-size: 2rem; line-height: 1.15; }
+        .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin: 24px 0 10px; }
+        .play { padding: 12px 22px; background: #e2bf94; color: #161412; font-weight: 700; text-decoration: none; }
+        .play:hover { background: #f0d4b2; }
+        .note, figcaption { color: #c1b39e; font-size: .9rem; }
+        figure { margin: 0; }
+        img { display: block; width: 100%; height: auto; border: 1px solid #554b40; }
+        figcaption { margin-top: 8px; }
+        .details { max-width: 72ch; border-top: 1px solid #554b40; padding: 12px 0 44px; }
+        footer { padding: 22px 0; border-top: 1px solid #554b40; }
+        @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" href="Final%20Project/index.html">Ethan Wansel</a>
+        <nav aria-label="Portfolio"><a href="Final%20Project/all-work.html">All Work</a></nav>
+    </header>
+    <main>
+        <section class="hero" aria-labelledby="project-title">
+            <div>
+                <p class="eyebrow">Playable 3D simulation</p>
+                <h1 id="project-title">Project Primal</h1>
+                <p>Track wild boars through a prehistoric ravine, hunt with a spear, and return to camp to cook your first meal.</p>
+                <div class="actions">
+                    <a class="play" href="https://qualityetime.github.io/primal-portfolio/" target="_blank" rel="noopener noreferrer">Play Demo ↗</a>
+                    <a href="https://github.com/Qualityetime/primal-portfolio" target="_blank" rel="noopener noreferrer">View Source ↗</a>
+                </div>
+                <p class="note">Single-player demo. Opens in a new tab. Desktop keyboard and mouse required.</p>
+            </div>
+            <figure>
+                <img src="https://raw.githubusercontent.com/Qualityetime/primal-portfolio/main/docs/screenshots/gameplay-telemetry.jpg" alt="First-person spear hunting in the ravine with live boar telemetry on screen">
+                <figcaption>Live telemetry shows how each boar responds during the hunt.</figcaption>
+            </figure>
+        </section>
+        <section class="details" aria-labelledby="simulation-title">
+            <h2 id="simulation-title">Inside the simulation</h2>
+            <p>The boars react to line of sight, nearby threats, and injuries. Press <kbd>T</kbd> during a hunt to see their behavior, pressure, and wound status as they change.</p>
+            <p>The portfolio edition runs the original simulation in the browser with a React interface and a Three.js world. The original four-player prototype used a Node.js and Socket.IO server to synchronize the hunt.</p>
+        </section>
+    </main>
+    <footer><a href="Final%20Project/index.html#work">← Back to Selected Work</a></footer>
+</body>
+</html>
