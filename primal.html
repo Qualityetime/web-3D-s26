@@ -25,9 +25,14 @@
         figure { margin: 0; }
         img { display: block; width: 100%; height: auto; border: 1px solid #554b40; }
         figcaption { margin-top: 8px; }
-        .details { max-width: 72ch; border-top: 1px solid #554b40; padding: 12px 0 44px; }
+        .details-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-bottom: 56px; }
+        .detail-card { padding: clamp(22px, 3vw, 36px); border: 1px solid #554b40; background: #161412; }
+        .detail-card h2 { margin-top: 0; }
+        .detail-card li + li { margin-top: 12px; }
+        .built { grid-column: 1 / -1; }
+        .detail-card ul { padding-left: 20px; }
         footer { padding: 22px 0; border-top: 1px solid #554b40; }
-        @media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+        @media (max-width: 760px) { .hero, .details-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -52,11 +57,34 @@
                 <figcaption>Live telemetry shows how each boar responds during the hunt.</figcaption>
             </figure>
         </section>
-        <section class="details" aria-labelledby="simulation-title">
-            <h2 id="simulation-title">Inside the simulation</h2>
-            <p>The boars react to line of sight, nearby threats, and injuries. Press <kbd>T</kbd> during a hunt to see their behavior, pressure, and wound status as they change.</p>
-            <p>The portfolio edition runs the original simulation in the browser with a React interface and a Three.js world. The original four-player prototype used a Node.js and Socket.IO server to synchronize the hunt.</p>
-        </section>
+        <div class="details-grid">
+            <section class="detail-card" aria-labelledby="goal-title">
+                <h2 id="goal-title">Project Goal</h2>
+                <p>I wanted to create a prehistoric hunting simulation where animals respond to the player and their changing condition. The project explores how perception, threat assessment, and localized injuries can produce believable behavior during a hunt.</p>
+                <p>For the portfolio edition, my goal was to turn the multiplayer prototype into a single-player experience visitors can play immediately in a desktop browser, while making the simulation easier to inspect through live telemetry.</p>
+            </section>
+            <section class="detail-card" aria-labelledby="tools-title">
+                <h2 id="tools-title">Tools Used</h2>
+                <ul>
+                    <li><strong>JavaScript and Three.js</strong> for the 3D world, first-person controls, and gameplay simulation.</li>
+                    <li><strong>React, HTML, and CSS</strong> for menus, the HUD, settings, results, and telemetry.</li>
+                    <li><strong>Vite, GitHub Actions, and GitHub Pages</strong> for production builds and automated publishing.</li>
+                    <li><strong>Node.js and Socket.IO</strong> for the original four-player multiplayer prototype.</li>
+                </ul>
+            </section>
+            <section class="detail-card built" aria-labelledby="built-title">
+                <h2 id="built-title">What I Built</h2>
+                <p>I developed a first-person hunting experience with a complete hunt, harvest, and cook loop. The portfolio edition brings that simulation into the browser through a local adapter and adds a React interface around the Three.js game.</p>
+                <ul>
+                    <li><strong>Interactive hunting systems.</strong> Spear thrusts and throws, bracing against charges, localized wounds, bleeding, harvesting, and campfire cooking.</li>
+                    <li><strong>Reactive boar AI.</strong> Animals perceive the hunter, assess pressure, and shift between warning, attacking, fleeing, and recovering as the encounter changes.</li>
+                    <li><strong>Live simulation telemetry.</strong> A tactical map and behavior, pressure, blood, and wound readings make the AI’s changing state visible during play.</li>
+                    <li><strong>A complete application interface.</strong> A briefing, health and stamina HUD, pause and settings menus, hunt results, and restart controls support the playable experience.</li>
+                    <li><strong>A browser-ready portfolio edition.</strong> The original simulation runs locally, with 200 automated tests and a GitHub Actions workflow that tests, builds, and publishes the demo.</li>
+                </ul>
+                <p class="note">The playable demo is single-player. Multiplayer belongs to the original Node.js and Socket.IO prototype.</p>
+            </section>
+        </div>
     </main>
     <footer><a href="Final%20Project/index.html#work">← Back to Selected Work</a></footer>
 </body>
